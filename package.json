@@ -1,5 +1,5 @@
 {
-  "name": "nextra-docs-template",
+  "name": "javascript-algorithms-and-data-structure",
   "version": "0.0.1",
   "description": "Nextra docs template",
   "scripts": {
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shuding/nextra-docs-template.git"
+    "url": "git+https://github.com/aalhommada/javascript-algorithms-and-data-structure.git"
   },
   "author": "Shu Ding <g@shud.in>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shuding/nextra-docs-template/issues"
+    "url": "https://github.com/shuding/javascript-algorithms-and-data-structure/issues"
   },
-  "homepage": "https://github.com/shuding/nextra-docs-template#readme",
+  "homepage": "https://github.com/shuding/javascript-algorithms-and-data-structure#readme",
   "dependencies": {
     "next": "^13.0.6",
     "nextra": "2.0.1",
