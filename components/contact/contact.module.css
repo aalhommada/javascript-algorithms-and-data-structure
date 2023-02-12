@@ -1,0 +1,19 @@
+.contatHeader {
+  color: red;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.links {
+  color: red;
+  cursor: pointer;
+}

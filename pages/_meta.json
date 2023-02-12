@@ -1,5 +1,7 @@
 {
   "index": "Main page",
+  "contains-duplicate-easy": "Contains Duplicate (easy)",
+  "valid-anagram-easy": "Valid Anagram (easy)",
   "about": {
     "title": "About",
     "type": "page"

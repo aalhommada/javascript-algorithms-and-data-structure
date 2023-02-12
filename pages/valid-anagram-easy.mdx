@@ -1,0 +1,32 @@
+import styles from "../components/contact/contact.module.css";
+
+## Valid Anagram
+
+<a
+  href="https://leetcode.com/problems/valid-anagram/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+```js
+/**
+ * Sort - HeapSort Space O(1) | QuickSort Space O(log(N))
+ * Time O(N * logN) | Space O(N)
+ * @param {string1}
+ * @param {string2}
+ * @return {boolean}
+ */
+
+function isAnagram(string1, string2) {
+  if (string1.length !== string2.length) {
+    return false;
+  }
+  let sortString1 = string1.split("").sort().join("");
+  let sortString2 = string2.split("").sort().join("");
+  return sortString1 === sortString2;
+}
+```
+
+This solution has a time complexity of O(n log n), where n is the length of the strings, because the sort function has a time complexity of O(n log n). The space complexity is O(n) because we need to store the sorted forms of both strings in memory.

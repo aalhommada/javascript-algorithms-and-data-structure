@@ -1,0 +1,34 @@
+import styles from "../components/contact/contact.module.css";
+
+## Contains Duplicate
+
+<a
+  href="https://leetcode.com/problems/contains-duplicate/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+```js
+/**
+ * Brute Force - Linear Search
+ * Time O(N^2) | Space O(1)
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+
+function containsDuplicate(nums) {
+  nums.sort();
+  for (let i = 0; i < nums.length - 1; i++) {
+    if (nums[i] === nums[i + 1]) {
+      return true;
+    }
+  }
+  return false;
+}
+```
+
+In this solution, we sort the input array nums using the built-in sort function, which has a time complexity of O(n log n). Then, we iterate through nums and check if any consecutive elements are equal. If we find any such elements, we return true, indicating that the input array contains duplicates. If we reach the end of the loop and haven't returned true, we return false, indicating that the input array does not contain duplicates.
+
+The space complexity of this solution is O(1) because we only use a constant amount of extra space to store variables, regardless of the size of the input array.
