@@ -11,14 +11,6 @@ import styles from "../components/contact.module.css";
 </a>
 
 ```js
-/**
- * Sort - HeapSort Space O(1) | QuickSort Space O(log(N))
- * Time O(N * logN) | Space O(N)
- * @param {string1}
- * @param {string2}
- * @return {boolean}
- */
-
 function isAnagram(string1, string2) {
   if (string1.length !== string2.length) {
     return false;
@@ -29,4 +21,4 @@ function isAnagram(string1, string2) {
 }
 ```
 
-This solution has a time complexity of O(n log n), where n is the length of the strings, because the sort function has a time complexity of O(n log n). The space complexity is O(n) because we need to store the sorted forms of both strings in memory.
+This solution has a time complexity of **O(n log n)**, where n is the length of the strings, because the sort function has a time complexity of O(n log n). The space complexity is **O(n)** because we need to store the sorted forms of both strings in memory.

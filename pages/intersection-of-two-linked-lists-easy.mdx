@@ -1,0 +1,31 @@
+import styles from "../components/contact.module.css";
+import { Tags } from "../components/tags";
+
+<Tags tagItems={["Linked List", "Two Pointers"]} />
+## Intersection of Two Linked Lists
+
+<a
+  href="https://leetcode.com/problems/intersection-of-two-linked-lists/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The problem of finding the intersection node of two singly linked lists is a common interview question that involves manipulating linked lists. Here's an example of how to solve this problem using JavaScript:
+
+```js
+function getIntersectionNode(headA, headB) {
+  let currA = headA;
+  let currB = headB;
+  while (currA !== currB) {
+    currA = currA ? currA.next : headB;
+    currB = currB ? currB.next : headA;
+  }
+  return currA;
+}
+```
+
+The function **getIntersectionNode** takes two arguments, `headA` and `headB`, which are the heads of two linked lists that may or may not intersect. The function uses two pointers, currA and currB, to traverse the two linked lists until they either intersect (i.e., currA and currB point to the same node) or both reach the end of their respective lists. If one of the pointers reaches the end of its list, it is redirected to the head of the other list to continue traversing from the beginning of the other list. If there is an intersection, the function returns the intersection node; otherwise, it returns null.
+
+The time complexity of this algorithm is **O(m + n)**, where m and n are the lengths of the input linked lists headA and headB, respectively. This is because the algorithm iterates through each list once and performs constant-time operations (such as node traversal and pointer manipulation) for each node in the list. The space complexity of the algorithm is **O(1)**, because the function only uses a constant amount of additional memory to store the two pointers currA and currB.
