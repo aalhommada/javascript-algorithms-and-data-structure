@@ -1,0 +1,34 @@
+import styles from "../components/contact.module.css";
+import { Tags } from "../components/tags";
+
+<Tags tagItems={["Array", "Dynamic programming"]} />
+## Best Time to Buy and Sell Stock
+
+<a
+  href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The problem of finding the best time to buy and sell a stock is a classic algorithmic problem that asks for the maximum profit that can be obtained by buying and selling a single share of stock. Here is an example of how to solve this problem using JavaScript:
+
+```js
+function maxProfit(prices) {
+  let minPrice = Number.MAX_VALUE;
+  let maxProfit = 0;
+  for (let i = 0; i < prices.length; i++) {
+    if (prices[i] < minPrice) {
+      minPrice = prices[i];
+    } else if (prices[i] - minPrice > maxProfit) {
+      maxProfit = prices[i] - minPrice;
+    }
+  }
+  return maxProfit;
+}
+```
+
+The function **maxProfit** takes one argument, an array of `prices`, and returns the maximum profit that can be obtained by buying and selling a single share of stock. The function initializes two variables, minPrice and maxProfit, to track the minimum price seen so far and the maximum profit that can be obtained, respectively. The function then iterates through the prices array and updates minPrice and maxProfit as follows: if the current price is lower than the minimum price seen so far, update minPrice to the current price; if the difference between the current price and minPrice is greater than the current maxProfit, update maxProfit to this difference. Finally, the function returns maxProfit.
+
+The time complexity of this algorithm is **O(n)**, where n is the length of the input array prices. This is because the algorithm iterates through the array once and performs constant-time operations (such as array access and comparison) for each price in the array. The space complexity of the algorithm is **O(1)**, because the function only uses a constant amount of additional memory to store the two variables minPrice and maxProfit.

@@ -2,6 +2,9 @@
   "index": "Main page",
   "contains-duplicate-easy": "Contains Duplicate (easy)",
   "valid-anagram-easy": "Valid Anagram (easy)",
+  "two-sum-easy": "Two sum (easy)",
+  "valid-palindrome-easy": "Valid palindrome (easy)",
+  "best-time-to-buy-and-sell-stock-easy": "Best Time to Buy and Sell Stock (easy)",
   "about": {
     "title": "About",
     "type": "page"

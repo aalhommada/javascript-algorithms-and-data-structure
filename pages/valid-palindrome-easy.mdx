@@ -1,0 +1,35 @@
+import styles from "../components/contact.module.css";
+import { Tags } from "../components/tags";
+
+<Tags tagItems={["Two pointers", "String"]} />
+## Valid palindrome
+
+<a
+  href="https://leetcode.com/problems/valid-palindrome/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The problem of determining whether a given string is a valid palindrome is a common interview question. A valid palindrome is a string that reads the same backward as forward, after ignoring non-alphanumeric characters and case sensitivity. Here is an example of how to solve this problem using JavaScript:
+
+```js
+function isPalindrome(s) {
+  s = s.toLowerCase().replace(/[^a-z0-9]/g, "");
+  let left = 0;
+  let right = s.length - 1;
+  while (left < right) {
+    if (s[left] !== s[right]) {
+      return false;
+    }
+    left++;
+    right--;
+  }
+  return true;
+}
+```
+
+The function **isPalindrome** takes one argument, a string `s`, and returns a boolean indicating whether s is a valid palindrome. The function first converts the string to lowercase and removes all non-alphanumeric characters using a regular expression. Then, the function uses two pointers, left and right, to compare the characters at opposite ends of the string. The while loop continues as long as left is less than right, meaning there are still characters to compare. If the characters at the current positions are not the same, the function returns false. If the loop completes without returning false, the function returns true.
+
+The time complexity of this algorithm is **O(n)**, where n is the length of the input string s. This is because the algorithm iterates through the string once and performs constant-time operations (such as string comparison and pointer manipulation) for each character in the string. The space complexity of the algorithm is also **O(n)**, because the function creates a new string that is the same length as the input string.

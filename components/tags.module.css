@@ -1,0 +1,16 @@
+.tagsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
+.tagItem {
+  background-color: rgb(216, 219, 33);
+  font-size: 12px;
+  font-weight: 700;
+  color: black;
+  margin-right: 2px;
+  border-radius: 10px;
+  padding: 4px 6px;
+}
