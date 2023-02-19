@@ -1,0 +1,34 @@
+import styles from "../components/contact.module.css";
+import { Tags } from "../components/tags";
+
+<Tags tagItems={["String"]} />
+## Intersection of Two Linked Lists
+
+<a
+  href="https://leetcode.com/problems/length-of-last-word/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The problem of finding the length of the last word in a string is a common interview question. Here's an example of how to solve this problem using JavaScript:
+
+```js
+function lengthOfLastWord(s) {
+  let length = 0;
+  let i = s.length - 1;
+  while (i >= 0 && s[i] === " ") {
+    i--;
+  }
+  while (i >= 0 && s[i] !== " ") {
+    length++;
+    i--;
+  }
+  return length;
+}
+```
+
+The function **lengthOfLastWord** takes a single argument, a string `s`, and returns the length of the last word in the string. The function uses a two-pass algorithm to find the last word. The first pass skips over any trailing spaces in the string by starting from the end of the string and moving backwards until the first non-space character is encountered. The second pass then counts the length of the last word by continuing to move backwards until either the beginning of the string is reached or a space character is encountered.
+
+The time complexity of this algorithm is **O(n)**, where n is the length of the input string s. This is because the algorithm iterates over each character in the string at most twice. The space complexity of the algorithm is **O(1)**, because the function only uses a constant amount of additional memory to store the length of the last word and the loop counter i.

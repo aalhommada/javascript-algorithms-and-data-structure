@@ -6,6 +6,9 @@
   "valid-palindrome-easy": "Valid palindrome (easy)",
   "best-time-to-buy-and-sell-stock-easy": "Best Time to Buy and Sell Stock (easy)",
   "intersection-of-two-linked-lists-easy": "Intersection of Two Linked Lists (easy)",
+  "search-insert-position.easy": "Search Insert Position (easy)",
+  "length-of-last-word.easy": "Length of last word (easy)",
+  "climbing-stairs.easy": "Climbing Stairs (easy)",
   "about": {
     "title": "About",
     "type": "page"

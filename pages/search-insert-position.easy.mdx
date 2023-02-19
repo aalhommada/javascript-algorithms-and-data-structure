@@ -1,0 +1,37 @@
+import styles from "../components/contact.module.css";
+import { Tags } from "../components/tags";
+
+<Tags tagItems={["Array", "Binary search"]} />
+## Intersection of Two Linked Lists
+
+<a
+  href="https://leetcode.com/problems/search-insert-position/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The problem of finding the position where a given element should be inserted into a sorted array is a common interview question. Here's an example of how to solve this problem using JavaScript:
+
+```js
+function searchInsert(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    if (nums[mid] === target) {
+      return mid;
+    } else if (nums[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+  return left;
+}
+```
+
+The function **searchInsert** takes two arguments, an array of integers `nums` and a target integer `target`, and returns the index at which target should be inserted into nums to maintain the sorted order. The function uses a binary search algorithm to locate the position where target should be inserted. The algorithm initializes two pointers, left and right, to the beginning and end of the array, respectively. It then repeatedly computes the midpoint between left and right, compares the value at the midpoint to target, and updates left and right accordingly to narrow down the search range. If the algorithm finds a value in nums that is equal to target, it returns the index of that value. Otherwise, the algorithm returns the value of left, which is the index where target should be inserted to maintain the sorted order.
+
+The time complexity of this algorithm is **O(log n)**, where n is the length of the input array nums. This is because the binary search algorithm divides the search range in half at each iteration, resulting in a logarithmic number of comparisons. The space complexity of the algorithm is **O(1)**, because the function only uses a constant amount of additional memory to store the two pointers left and right.

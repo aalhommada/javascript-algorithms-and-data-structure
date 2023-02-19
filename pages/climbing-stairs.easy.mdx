@@ -1,0 +1,35 @@
+import styles from "../components/contact.module.css";
+import { Tags } from "../components/tags";
+
+<Tags tagItems={["Math", "Dynamic programming", "Memoizarion"]} />
+## Intersection of Two Linked Lists
+
+<a
+  href="https://leetcode.com/problems/climbing-stairs/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The problem of climbing stairs involves finding the number of distinct ways to climb a staircase with n steps, given that you can climb one or two steps at a time. Here's an example of how to solve this problem using JavaScript:
+
+```js
+function climbStairs(n) {
+  if (n === 1) {
+    return 1;
+  }
+  let dp = new Array(n + 1).fill(0);
+  dp[1] = 1;
+  dp[2] = 2;
+  for (let i = 3; i <= n; i++) {
+    dp[i] = dp[i - 1] + dp[i - 2];
+  }
+  return dp[n];
+}
+```
+
+The function **climbStairs** takes a single argument, an integer `n`, and returns the number of distinct ways to climb a staircase with n steps. The function uses a dynamic programming algorithm to compute the solution. Specifically, it initializes an array dp of length n+1 to store the number of distinct ways to climb the staircase with 1, 2, ..., n steps, and fills in the array in a bottom-up manner by computing the value of each element as the sum of the values of the two previous elements.
+
+The time complexity of this algorithm is **O(n)**, where n is the number of steps in the staircase. This is because the algorithm fills in the dp array with n elements using a single for-loop. The space complexity of the algorithm is **O(n)**, because the algorithm uses an array of size n to store the intermediate solutions.
+However, it's possible to optimize the space complexity by only keeping track of the two previous elements instead of storing the entire dp array. This would reduce the space complexity to O(1).
