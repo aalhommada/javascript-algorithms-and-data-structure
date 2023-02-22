@@ -7,7 +7,13 @@ const config: DocsThemeConfig = {
       <img
         src="https://aalhommada.com/images/logo.svg"
         alt="aalhommada logo"
-        style={{ width: "25px", height: "25px" }}
+        style={{
+          width: "25px",
+          height: "25px",
+          backgroundColor: "red",
+          borderRadius: "10px",
+          padding: "3px",
+        }}
       />
       <span style={{ marginLeft: ".4em", fontWeight: 800 }}>aalhommada</span>
     </>
@@ -31,7 +37,7 @@ const config: DocsThemeConfig = {
       <span>
         {new Date().getFullYear()} ©{" "}
         <a
-          href="aalhommada.com"
+          href="https://aalhommada.com/"
           target="_blank"
           style={{ color: "red", marginRight: "5px" }}
         >
