@@ -1,0 +1,52 @@
+import styles from "../components/contact.module.css";
+import { Tags } from "../components/tags";
+
+<Tags tagItems={["Array", "Hash Table", "String"]} />
+## Intersection of Two Linked Lists
+
+<a
+  href="https://leetcode.com/problems/minimum-index-sum-of-two-lists/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The **Minimum Index Sum of Two Lists** problem is a coding challenge where we have to find the common restaurants between two given lists of restaurants, and return the one with the minimum index sum.
+
+Here's one possible solution to the problem using JavaScript:
+
+```js
+const findRestaurant = function (list1, list2) {
+  const commonRestaurants = [];
+
+  for (let i = 0; i < list1.length; i++) {
+    const restaurant = list1[i];
+    const indexInList2 = list2.indexOf(restaurant);
+
+    if (indexInList2 !== -1) {
+      commonRestaurants.push({ name: restaurant, indexSum: i + indexInList2 });
+    }
+  }
+
+  let minIndexSum = Infinity;
+  let result = [];
+
+  for (const restaurant of commonRestaurants) {
+    if (restaurant.indexSum < minIndexSum) {
+      minIndexSum = restaurant.indexSum;
+      result = [restaurant.name];
+    } else if (restaurant.indexSum === minIndexSum) {
+      result.push(restaurant.name);
+    }
+  }
+
+  return result;
+};
+```
+
+The solution works by iterating through the first list of restaurants and for each restaurant, it checks if it is also in the second list of restaurants using the indexOf() method. If it is, it adds the restaurant to an array of common restaurants along with the sum of its index in both lists.
+
+After all common restaurants have been found, the solution then iterates through the array of common restaurants and finds the one with the smallest index sum. If multiple common restaurants have the same minimum index sum, they are all added to the result array.
+
+The time complexity of this solution is **O(n\*m)**, where n is the length of the first input array and m is the length of the second input array. This is because we need to iterate through every restaurant in the first list and for each restaurant, we need to search for it in the second list using the indexOf() method, which takes linear time. The space complexity of this solution is **O(k)**, where k is the number of common restaurants between the two input arrays. This is because we are storing the common restaurants in an array.

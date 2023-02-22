@@ -1,0 +1,59 @@
+import styles from "../components/contact.module.css";
+import { Tags } from "../components/tags";
+
+<Tags tagItems={["Array", "Hash Table", "String"]} />
+## Intersection of Two Linked Lists
+
+<a
+  href="https://leetcode.com/problems/keyboard-row/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The **Keyboard Row** problem is a coding challenge where we have to determine if a given array of strings contains only words that can be typed using a single row of a QWERTY keyboard.
+
+Here's one possible solution to the problem using JavaScript:
+
+```js
+const findWords = function (words) {
+  const row1 = new Set("qwertyuiop");
+  const row2 = new Set("asdfghjkl");
+  const row3 = new Set("zxcvbnm");
+  const result = [];
+
+  for (const word of words) {
+    const lowerCaseWord = word.toLowerCase();
+    let row = null;
+    let valid = true;
+
+    // Determine which row the first character of the word is on
+    if (row1.has(lowerCaseWord[0])) {
+      row = row1;
+    } else if (row2.has(lowerCaseWord[0])) {
+      row = row2;
+    } else if (row3.has(lowerCaseWord[0])) {
+      row = row3;
+    }
+
+    // Check if all the characters in the word are on the same row
+    for (let i = 1; i < lowerCaseWord.length; i++) {
+      if (!row.has(lowerCaseWord[i])) {
+        valid = false;
+        break;
+      }
+    }
+
+    if (valid) {
+      result.push(word);
+    }
+  }
+
+  return result;
+};
+```
+
+The solution works by first creating three sets that represent the three rows of a QWERTY keyboard. It then iterates through each word in the input array and for each word, it determines which row the first character is on. It then checks if all the characters in the word are on the same row by iterating through the rest of the characters and checking if they are in the same set as the first character. If all characters are on the same row, the word is added to the result array.
+
+The time complexity of this solution is **O(n\*m)**, where n is the length of the input array and m is the average length of a word in the input array. This is because we need to iterate through every word in the input array and for each word, we need to iterate through every character in the word to check if they are on the same row. The space complexity of this solution is **O(1)** because we are only using a constant amount of extra space to store the three sets and the result array.

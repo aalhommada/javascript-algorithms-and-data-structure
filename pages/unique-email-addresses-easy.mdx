@@ -1,0 +1,38 @@
+import styles from "../components/contact.module.css";
+import { Tags } from "../components/tags";
+
+<Tags tagItems={["Array", "Hash Table", "String"]} />
+## Intersection of Two Linked Lists
+
+<a
+  href="https://leetcode.com/problems/unique-email-addresses/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The Unique Email Addresses algorithm is used to count the number of unique email addresses in a given list of email addresses, after applying certain normalization rules. Here's how it can be implemented in JavaScript:
+
+```js
+function numUniqueEmails(emails) {
+  const uniqueEmails = new Set();
+  for (let i = 0; i < emails.length; i++) {
+    const [local, domain] = emails[i].split("@");
+    const normalizedLocal = local.split("+")[0].replace(/\./g, "");
+    const normalizedEmail = normalizedLocal + "@" + domain;
+    uniqueEmails.add(normalizedEmail);
+  }
+  return uniqueEmails.size;
+}
+```
+
+The function **numUniqueEmails** takes an array of email addresses called `emails` as input. It creates a new Set called uniqueEmails to keep track of the unique email addresses, and then loops through the emails array. For each email address, it splits it into the local and domain parts using the split() method, and then applies the following normalization rules:
+
+Remove any plus sign and all characters after it in the local part using the split() method and the array destructuring syntax [local, domain].
+Remove all dots from the local part using the replace() method with a regular expression /\./g.
+Concatenate the normalized local and domain parts with an @ symbol to form the normalized email address.
+
+Finally, the function adds each normalized email address to the uniqueEmails set, which automatically eliminates duplicates. It then returns the size of the set, which is the number of unique email addresses.
+
+The time complexity of this algorithm is **O(nm)**, where n is the length of the emails array and m is the maximum length of an email address. The space complexity is also **O(nm)**, as it uses a set to store the unique email addresses.

@@ -1,0 +1,37 @@
+import styles from "../components/contact.module.css";
+import { Tags } from "../components/tags";
+
+<Tags tagItems={["Array", "Hash Table", "String", "Sortin"]} />
+## Intersection of Two Linked Lists
+
+<a
+  href="https://leetcode.com/problems/sort-the-people/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The Sort the People algorithm is used to sort a given list of people based on their age, height, and gender. Here's how it can be implemented in JavaScript:
+
+Here is a possible solution to the problem in JavaScript:
+
+```js
+function sortNamesByHeight(names, heights) {
+  const n = names.length;
+  const people = [];
+  for (let i = 0; i < n; i++) {
+    people.push({ name: names[i], height: heights[i] });
+  }
+  people.sort((a, b) => b.height - a.height);
+  const result = [];
+  for (let i = 0; i < n; i++) {
+    result.push(people[i].name);
+  }
+  return result;
+}
+```
+
+The function **sortNamesByHeight** takes two arrays as input: `names` and `heights`, which represent the names and heights of people, respectively. The function creates an array of objects called people, where each object has two properties: name and height, corresponding to the name and height of a person. Then, it sorts the people array in descending order based on the height property using the Array.prototype.sort() method. Finally, the function creates a new array called result with the sorted names and returns it.
+
+The time complexity of this algorithm is **O(n log n)**, as it uses the sort() method, which has a time complexity of O(n log n). The space complexity is also **O(n)**, as it uses an array of objects called people with a length of n.

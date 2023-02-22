@@ -1,0 +1,35 @@
+import styles from "../components/contact.module.css";
+import { Tags } from "../components/tags";
+
+<Tags tagItems={["Array", "String"]} />
+## Intersection of Two Linked Lists
+
+<a
+  href="https://leetcode.com/problems/final-value-of-variable-after-performing-operations/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The problem "Final Value of Variable After Performing Operations" involves performing a sequence of operations on a variable x, where each operation is either incrementing or decrementing the value of x by 1, based on the value of a given string operations. The goal is to determine the final value of x after performing all the operations in the given string.
+
+Here is a JavaScript solution to the problem:
+
+```js
+function finalValueAfterOperations(operations) {
+  let res = 0;
+  for (let i = 0; i < operations.length; i++) {
+    if (operations[i] === "++X" || operations[i] === "X++") {
+      res++;
+    } else {
+      res--;
+    }
+  }
+  return res;
+}
+```
+
+In this solution, we initialize the variable res to 0. We then loop through each character in the string operations. If the current character is either '++X' or 'X++', we increment res by 1. Otherwise, we decrement res by 1.
+
+The time complexity of this solution is **O(n)**, where n is the length of the input string operations, because we are iterating through the string one character at a time. The space complexity of this solution is **O(1)**, because we are only using a single variable to store the value of res.
