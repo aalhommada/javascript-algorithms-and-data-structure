@@ -1,0 +1,65 @@
+import styles from "../components/contact.module.css";
+import { Tags } from "../components/tags";
+
+<Tags tagItems={["Array", "Hash Table", "String"]} />
+## Intersection of Two Linked Lists
+
+<a
+  href="https://leetcode.com/problems/shortest-completing-word/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The problem **Shortest Completing Word** involves finding the shortest word in a given array words that contains all the letters in a given string chars. The letters in chars can be in any order, but the word in words must contain all the letters in chars, regardless of their order.
+
+Here is a JavaScript solution to the problem:
+
+```js
+function shortestCompletingWord(chars, words) {
+  let charCounts = getCharCounts(chars);
+  let shortestWord = null;
+  for (let i = 0; i < words.length; i++) {
+    let wordCounts = getCharCounts(words[i]);
+    if (containsAllChars(charCounts, wordCounts)) {
+      if (shortestWord === null || words[i].length < shortestWord.length) {
+        shortestWord = words[i];
+      }
+    }
+  }
+  return shortestWord;
+}
+
+function getCharCounts(str) {
+  let charCounts = {};
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i].toLowerCase();
+    if (/[a-z]/.test(char)) {
+      if (char in charCounts) {
+        charCounts[char]++;
+      } else {
+        charCounts[char] = 1;
+      }
+    }
+  }
+  return charCounts;
+}
+
+function containsAllChars(charCounts1, charCounts2) {
+  for (let char in charCounts1) {
+    if (!(char in charCounts2) || charCounts2[char] < charCounts1[char]) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+
+In this solution, we first define a helper function getCharCounts that takes a string as input and returns an object containing the counts of each character in the string. This function is used to create character count objects for both the input chars and each word in the input words.
+
+We then iterate through each word in the input words. For each word, we create a character count object using the getCharCounts function, and then check if this object contains all the characters in the input chars using the containsAllChars function. If the word contains all the characters in chars, we check if it is shorter than the current shortest word, and if so, update the shortest word.
+
+The containsAllChars function checks if the character count object for a word contains all the characters in the character count object for chars. It returns true if all characters are present, and false otherwise.
+
+The time complexity of this solution is **O(n\*m)**, where n is the number of words in the input words, and m is the maximum length of a word in words. This is because we iterate through each word in words and each character in each word, and the getCharCounts function also iterates through each character in a string. The space complexity of this solution is **O(k)**, where k is the number of distinct characters in the input chars, because we create a character count object for chars.

@@ -1,0 +1,38 @@
+import styles from "../components/contact.module.css";
+import { Tags } from "../components/tags";
+
+<Tags tagItems={["Array", "Prefix Sum"]} />
+## Best Time to Buy and Sell Stock
+
+<a
+  href="https://leetcode.com/problems/find-pivot-index/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The problem of **Find Pivot Index** in Javascript involves finding an index in an array where the sum of all elements to the left of that index is equal to the sum of all elements to the right of that index.
+
+Here's an example of how to solve this problem in Javascript using two pointers:
+
+```js
+function pivotIndex(nums) {
+  let leftSum = 0;
+  let rightSum = nums.reduce((a, b) => a + b, 0);
+
+  for (let i = 0; i < nums.length; i++) {
+    rightSum -= nums[i];
+    if (leftSum === rightSum) {
+      return i;
+    }
+    leftSum += nums[i];
+  }
+
+  return -1;
+}
+```
+
+This solution initializes `leftSum` to 0 and `rightSum` to the sum of all elements in the array using the reduce() function. Then, it iterates through the array using a for loop, subtracting the current element from rightSum and checking if leftSum and rightSum are equal at each index. If they are, the index is returned. If no such index is found, the function returns -1.
+
+The time complexity of this solution is **O(n)**, where n is the length of the input array, since it only needs to iterate through the array once. The space complexity is **O(1)**, since it only uses a constant amount of extra space to store leftSum, rightSum, and the loop index.
