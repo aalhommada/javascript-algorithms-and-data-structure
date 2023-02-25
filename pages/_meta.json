@@ -1,25 +1,12 @@
 {
-  "index": "Main page",
-  "contains-duplicate-easy": "Contains Duplicate (easy)",
-  "valid-anagram-easy": "Valid Anagram (easy)",
-  "two-sum-easy": "Two sum (easy)",
-  "valid-palindrome-easy": "Valid palindrome (easy)",
-  "best-time-to-buy-and-sell-stock-easy": "Best Time to Buy and Sell Stock (easy)",
-  "intersection-of-two-linked-lists-easy": "Intersection of Two Linked Lists (easy)",
-  "search-insert-position.easy": "Search Insert Position (easy)",
-  "length-of-last-word.easy": "Length of last word (easy)",
-  "climbing-stairs-easy": "Climbing Stairs (easy)",
-  "minimum-index-sum-of-two-lists-easy": "Minimum Index Sum of two Lists (easy)",
-  "keyboard-row-easy": "Keyboard Row (easy)",
-  "sort-the-people-easy": "Sort the People (easy)",
-  "unique-email-addresses-easy": "Unique Email Addresses (easy)",
-  "final-value-of-variable-after-performing-operations-easy": " Final Value of Variable After Performing Operations (easy)",
-  "shortest-completing-word-easy": "Shortest Completing Word (easy)",
-  "runningsum-of-1d-array-easy": "Running Sum of 1d Array (easy)",
-  "find-pivot-Index-easy": "find-pivot-Index-easy (easy)",
-  "about": {
-    "title": "About",
-    "type": "page"
+  "index": "Welcom to JS Algorithms",
+  "Easy Difficulty": {
+    "type": "folder",
+    "name": "Easy Difficulty"
+  },
+  "Medium Difficulty": {
+    "type": "folder",
+    "name": "Medium Difficulty"
   },
   "contact": {
     "title": "Contact ↗",

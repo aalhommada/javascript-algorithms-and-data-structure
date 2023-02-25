@@ -1,17 +1,9 @@
 import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
+import { useRouter } from "next/router";
+import { useConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
-  head: (
-    <>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta property="og:title" content="Algorithms and data structure" />
-      <meta
-        property="og:description"
-        content="javascript algorithms and data structure"
-      />
-    </>
-  ),
   logo: (
     <>
       <img
@@ -28,6 +20,34 @@ const config: DocsThemeConfig = {
       <span style={{ marginLeft: ".4em", fontWeight: 800 }}>aalhommada</span>
     </>
   ),
+  useNextSeoProps() {
+    const { asPath } = useRouter();
+    if (asPath !== "/") {
+      return {
+        titleTemplate: "%s | Js algorithms and data structure",
+        defaultTitle: "Javascript Algorithms and Data Structure",
+        description: "Js algorithms and data structure",
+      };
+    }
+  },
+  head: () => {
+    const { asPath, defaultLocale, locale } = useRouter();
+    const { frontMatter } = useConfig();
+    const url =
+      "https://dsa.aalhommada.com" +
+      (defaultLocale === locale ? asPath : `/${locale}${asPath}`);
+
+    return (
+      <>
+        <meta property="og:url" content={url} />
+        <meta property="og:title" content={frontMatter.title || "Abdullah"} />
+        <meta
+          property="og:description"
+          content={frontMatter.description || "Algorithms and data structure"}
+        />
+      </>
+    );
+  },
   project: {
     link: "https://github.com/aalhommada/javascript-algorithms-and-data-structure.git",
   },
