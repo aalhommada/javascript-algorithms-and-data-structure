@@ -20,7 +20,7 @@ const config: DocsThemeConfig = {
       <span style={{ marginLeft: ".4em", fontWeight: 800 }}>aalhommada</span>
     </>
   ),
-  faviconGlyph: "✦",
+  faviconGlyph: "A",
   useNextSeoProps() {
     const { frontMatter } = useConfig();
     const { asPath } = useRouter();
@@ -34,24 +34,24 @@ const config: DocsThemeConfig = {
       };
     }
   },
-  head: () => {
-    const { asPath, defaultLocale, locale } = useRouter();
-    const { frontMatter } = useConfig();
-    const url =
-      "https://dsa.aalhommada.com" +
-      (defaultLocale === locale ? asPath : `/${locale}${asPath}`);
+  // head: () => {
+  //   const { asPath, defaultLocale, locale } = useRouter();
+  //   const { frontMatter } = useConfig();
+  //   const url =
+  //     "https://dsa.aalhommada.com" +
+  //     (defaultLocale === locale ? asPath : `/${locale}${asPath}`);
 
-    return (
-      <>
-        <meta property="og:url" content={url} />
-        <meta property="og:title" content={frontMatter.title || "Abdullah"} />
-        <meta
-          property="og:description"
-          content={frontMatter.description || "Algorithms and data structure"}
-        />
-      </>
-    );
-  },
+  //   return (
+  //     <>
+  //       <meta property="og:url" content={url} />
+  //       <meta property="og:title" content={frontMatter.title || "Abdullah"} />
+  //       <meta
+  //         property="og:description"
+  //         content={frontMatter.description || "Algorithms and data structure"}
+  //       />
+  //     </>
+  //   );
+  // },
   project: {
     link: "https://github.com/aalhommada/javascript-algorithms-and-data-structure.git",
   },

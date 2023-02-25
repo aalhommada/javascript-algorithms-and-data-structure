@@ -1,0 +1,52 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+
+<Tags tagItems={["Hash Table", "String"]} />
+## Best Time to Buy and Sell Stock
+
+<a
+  href="https://leetcode.com/problems/isomorphic-strings/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+**Isomorphic Strings** is a problem in computer science that asks to determine if two given strings are isomorphic or not. Two strings are said to be isomorphic if the characters in one string can be replaced by the characters in another string such that the meaning of the strings remains the same.
+
+For example, "egg" and "add" are isomorphic because you can replace "e" with "a" and "g" with "d". Similarly, "paper" and "title" are isomorphic because you can replace "p" with "t", "a" with "i", "e" with "l", and "r" with "e".
+
+Here's a JavaScript function to check whether two strings are isomorphic or not:
+
+```js
+function isIsomorphic(s, t) {
+  if (s.length !== t.length) return false;
+
+  const mapST = {};
+  const mapTS = {};
+
+  for (let i = 0; i < s.length; i++) {
+    const charS = s[i];
+    const charT = t[i];
+
+    if (mapST[charS] === undefined && mapTS[charT] === undefined) {
+      mapST[charS] = charT;
+      mapTS[charT] = charS;
+    } else if (mapST[charS] !== charT || mapTS[charT] !== charS) {
+      return false;
+    }
+  }
+
+  return true;
+}
+```
+
+This function first checks if the lengths of the two strings are equal. If they are not equal, it returns false because two strings of different lengths cannot be isomorphic.
+
+Next, the function creates two empty objects, mapST and mapTS, which will be used to keep track of the mapping between the characters in the two strings.
+
+The function then iterates through the characters in the two strings, one by one. For each pair of characters, it checks if they are already in the mapST and mapTS objects. If they are not, it adds them to the objects as a new mapping. If they are already in the objects, it checks if the current mapping is consistent with the existing mapping. If it is not consistent, the function returns false because the strings are not isomorphic.
+
+If the function makes it through the entire iteration without returning false, it returns true because the strings are isomorphic.
+
+The time complexity of this function is **O(n)**, where n is the length of the strings. This is because the function needs to iterate through each character in the strings once. The space complexity of the function is also **O(n)**, because in the worst case, both the mapST and mapTS objects will have to store n mappings.

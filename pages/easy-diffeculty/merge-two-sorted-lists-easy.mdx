@@ -1,0 +1,42 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+
+<Tags tagItems={["Linked List", "Recursion"]} />
+## Best Time to Buy and Sell Stock
+
+<a
+  href="https://leetcode.com/problems/merge-two-sorted-lists/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The problem **Merge Two Sorted Lists** is defined as follows: given two sorted linked lists, `l1` and `l2`, merge them into a single sorted linked list and return the head of the merged list.
+
+Here's a possible solution to this problem in JavaScript:
+
+```js
+function mergeTwoLists(l1, l2) {
+  let dummy = new ListNode(-1);
+  let tail = dummy;
+  while (l1 !== null && l2 !== null) {
+    if (l1.val < l2.val) {
+      tail.next = l1;
+      l1 = l1.next;
+    } else {
+      tail.next = l2;
+      l2 = l2.next;
+    }
+    tail = tail.next;
+  }
+  tail.next = l1 !== null ? l1 : l2;
+  return dummy.next;
+}
+```
+
+The above function uses a dummy node dummy and a tail node tail to keep track of the merged list. The while loop continues until either l1 or l2 becomes null. At each iteration, the function compares the values of the current nodes of l1 and l2, and appends the smaller one to the tail of the merged list. Then the corresponding pointer (l1 or l2) is moved to the next node, and the tail of the merged list is updated to the new node.
+
+Finally, the function checks if there are any remaining nodes in either l1 or l2, and appends them to the tail of the merged list. Then the function returns the next node after the dummy node, which is the head of the merged list.
+
+The time complexity of this solution is O(m+n), where m and n are the lengths of l1 and l2 respectively. The reason is that the function iterates over all the nodes of l1 and l2 at most once, and each iteration takes constant time. The space complexity is O(1), because the function uses only a constant amount of additional memory regardless of the size of the input.

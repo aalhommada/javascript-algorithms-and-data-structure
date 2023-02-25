@@ -15,5 +15,8 @@
   "shortest-completing-word-easy": "Shortest Completing Word",
   "runningsum-of-1d-array-easy": "Running Sum of 1d Array",
   "find-pivot-Index-easy": "find-pivot-Index-easy",
-  "contains-duplicate-easy": "Contains Duplicate"
+  "contains-duplicate-easy": "Contains Duplicate",
+  "isomorphic-strings-easy": "Isomorphic Strings",
+  "is-subsequence-easy": "Is Subsequence",
+  "merge-two-sorted-lists-easy": "Merge Two Sorted Lists"
 }
