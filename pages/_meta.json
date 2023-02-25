@@ -1,13 +1,5 @@
 {
   "index": "Welcom to JS Algorithms",
-  "Easy Difficulty": {
-    "type": "folder",
-    "name": "Easy Difficulty"
-  },
-  "Medium Difficulty": {
-    "type": "folder",
-    "name": "Medium Difficulty"
-  },
   "contact": {
     "title": "Contact ↗",
     "type": "page",

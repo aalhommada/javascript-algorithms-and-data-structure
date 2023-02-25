@@ -20,13 +20,17 @@ const config: DocsThemeConfig = {
       <span style={{ marginLeft: ".4em", fontWeight: 800 }}>aalhommada</span>
     </>
   ),
+  faviconGlyph: "✦",
   useNextSeoProps() {
+    const { frontMatter } = useConfig();
     const { asPath } = useRouter();
     if (asPath !== "/") {
       return {
         titleTemplate: "%s | Js algorithms and data structure",
         defaultTitle: "Javascript Algorithms and Data Structure",
-        description: "Js algorithms and data structure",
+        description:
+          frontMatter.description ||
+          "aalhommada: Js algorithms and data structure",
       };
     }
   },
