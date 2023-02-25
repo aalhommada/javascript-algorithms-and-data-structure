@@ -1,4 +1,7 @@
 import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+
+<Tags tagItems={["Hash Tables", "String", "Sorting"]} />
 
 ## Valid Anagram
 
@@ -10,15 +13,40 @@ import styles from "../../components/contact.module.css";
   Link to algo
 </a>
 
+An anagram is a word formed by rearranging the letters of another word, using all
+the original letters exactly once. For example, "listen" and "silent" are anagrams
+of each other.
+
+Here is an implementation of this algorithm in JavaScript:
+
 ```js
-function isAnagram(string1, string2) {
-  if (string1.length !== string2.length) {
+function isAnagram(s, t) {
+  if (s.length !== t.length) {
     return false;
   }
-  let sortString1 = string1.split("").sort().join("");
-  let sortString2 = string2.split("").sort().join("");
-  return sortString1 === sortString2;
+
+  const objS = {};
+  const objT = {};
+
+  for (let i = 0; i < s.length; i++) {
+    objS[s[i]] = (objS[s[i]] || 0) + 1;
+    objT[t[i]] = (objT[t[i]] || 0) + 1;
+  }
+
+  for (let char in objS) {
+    if (objS[char] !== objT[char]) {
+      return false;
+    }
+  }
+
+  return true;
 }
 ```
 
-This solution has a time complexity of **O(n log n)**, where n is the length of the strings, because the sort function has a time complexity of O(n log n). The space complexity is **O(n)** because we need to store the sorted forms of both strings in memory.
+In **isAnagram** function, we first check if the lengths of the strings `s` and `t` are equal. If they are not, we return false. Then, we create two empty objects objS and objT to store the objects for s and t, respectively.
+
+We then loop through each character in s and t, and update the object for each character in the corresponding object. We use the || operator to set the initial value of each object to 0 if it does not exist in the object.
+
+Finally, we loop through the keys in objS and check if the value of each key in objS is equal to the value of the corresponding key in objT. If any of these values are not equal, we return false. If all the values are equal, we return true.
+
+The time complexity of this algorithm is **O(n)**, where n is the length of the input strings, since we loop through each character in the strings once. The space complexity is also **O(n)**, since we create two objects to store the frequency counters.
