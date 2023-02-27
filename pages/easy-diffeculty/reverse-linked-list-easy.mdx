@@ -1,0 +1,44 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+
+<Tags tagItems={["Linked List"]} />
+## Reverse Linked List
+
+<a
+  href="https://leetcode.com/problems/reverse-linked-list/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+A linked list is a data structure that consists of nodes that are linked to each other. Each node contains a value and a reference (pointer) to the next node in the list. To reverse a linked list, we need to reverse the order of the references (pointers) between the nodes.
+
+Here is one way to implement the reverse linked list function in JavaScript:
+
+```js
+function reverseLinkedList(head) {
+  let prev = null;
+  let current = head;
+  let next = null;
+
+  while (current !== null) {
+    next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+
+  return prev;
+}
+```
+
+In this implementation, we use three pointers: `prev`, `current`, and `next`. prev is initially set to null, current is set to the head of the list, and next is set to null. We then iterate through the list using a while loop, updating the pointers as follows:
+
+Set next to the next node in the list.
+Set the next property of the current node to prev.
+Update prev to current.
+Update current to next.
+At the end of the loop, the prev pointer will be pointing to the new head of the reversed list.
+
+The time complexity of this implementation is **O(n)**, where n is the number of nodes in the linked list, since we need to iterate through all the nodes once. The space complexity is **O(1)**, since we are only using a constant amount of extra memory to store the pointers.

@@ -1,0 +1,56 @@
+<Tags tagItems={["Linked List", "Tow Pointers", "Hash Table"]} />
+## Linked List Cycle II
+
+<a
+  href="https://leetcode.com/problems/linked-list-cycle-ii/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To detect the start node of a cycle in a linked list, we can use the two-pointer technique. We use a slow pointer and a fast pointer to traverse the linked list. When the two pointers meet at a node, we know that there is a cycle in the linked list. The next step is to find the start node of the cycle.
+
+Here is one way to implement the detect cycle start node function in JavaScript:
+
+```js
+function detectCycleStartNode(head) {
+  let slow = head;
+  let fast = head;
+  let hasCycle = false;
+
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if (slow === fast) {
+      hasCycle = true;
+      break;
+    }
+  }
+
+  if (!hasCycle) {
+    return null;
+  }
+
+  slow = head;
+
+  while (slow !== fast) {
+    slow = slow.next;
+    fast = fast.next;
+  }
+
+  return slow;
+}
+```
+
+In this implementation, we use two pointers: `slow` and `fast`. Both pointers are initially set to the head of the list. We then iterate through the list using a while loop, updating the pointers as follows:
+
+- Move the slow pointer to the next node.
+- Move the fast pointer to the next node twice as fast.
+- If the slow and fast pointers meet at a node, set the hasCycle flag to true and break out of the loop.
+- If the hasCycle flag is not set to true at the end of the first loop, we know that there is no cycle in - - the linked list and we can return null.
+
+If there is a cycle in the linked list, we reset the slow pointer to the head of the list and iterate through the list again using a while loop. This time, we move both the slow and fast pointers one node at a time until they meet again at the start node of the cycle.
+
+The time complexity of this implementation is **O(n)**, where n is the number of nodes in the linked list, since we need to iterate through all the nodes once. The space complexity is **O(1)**, since we are only using a constant amount of extra memory to store the pointers and flags.

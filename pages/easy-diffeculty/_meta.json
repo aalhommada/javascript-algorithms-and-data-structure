@@ -18,5 +18,7 @@
   "contains-duplicate-easy": "Contains Duplicate",
   "isomorphic-strings-easy": "Isomorphic Strings",
   "is-subsequence-easy": "Is Subsequence",
-  "merge-two-sorted-lists-easy": "Merge Two Sorted Lists"
+  "merge-two-sorted-lists-easy": "Merge Two Sorted Lists",
+  "reverse-linked-list-easy": "Reverse Linked List",
+  "middle-of-the-linked-list-easy": "Middle of the Linked List"
 }

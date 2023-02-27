@@ -35,8 +35,8 @@ function mergeTwoLists(l1, l2) {
 }
 ```
 
-The above function uses a dummy node dummy and a tail node tail to keep track of the merged list. The while loop continues until either l1 or l2 becomes null. At each iteration, the function compares the values of the current nodes of l1 and l2, and appends the smaller one to the tail of the merged list. Then the corresponding pointer (l1 or l2) is moved to the next node, and the tail of the merged list is updated to the new node.
+The above function uses a dummy node `dummy` and a tail node `tail` to keep track of the merged list. The while loop continues until either l1 or l2 becomes null. At each iteration, the function compares the values of the current nodes of l1 and l2, and appends the smaller one to the tail of the merged list. Then the corresponding pointer (l1 or l2) is moved to the next node, and the tail of the merged list is updated to the new node.
 
 Finally, the function checks if there are any remaining nodes in either l1 or l2, and appends them to the tail of the merged list. Then the function returns the next node after the dummy node, which is the head of the merged list.
 
-The time complexity of this solution is O(m+n), where m and n are the lengths of l1 and l2 respectively. The reason is that the function iterates over all the nodes of l1 and l2 at most once, and each iteration takes constant time. The space complexity is O(1), because the function uses only a constant amount of additional memory regardless of the size of the input.
+The time complexity of this solution is **O(m+n)**, where m and n are the lengths of l1 and l2 respectively. The reason is that the function iterates over all the nodes of l1 and l2 at most once, and each iteration takes constant time. The space complexity is **O(1)**, because the function uses only a constant amount of additional memory regardless of the size of the input.
