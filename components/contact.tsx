@@ -3,7 +3,7 @@ import { FaLinkedin, FaTwitter, FaGithub, FaMedium } from "react-icons/fa";
 
 export function Contact() {
   return (
-    <>
+    <div className={styles.contactContainer}>
       <h2 className={styles.contatHeader}>contact info</h2>
       <div className={styles.icons}>
         <a
@@ -40,6 +40,6 @@ export function Contact() {
           <FaMedium />
         </a>
       </div>
-    </>
+    </div>
   );
 }
