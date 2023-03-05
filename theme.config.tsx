@@ -34,6 +34,7 @@ const config: DocsThemeConfig = {
       };
     }
   },
+
   head: () => {
     const { asPath, defaultLocale, locale } = useRouter();
     const { frontMatter } = useConfig();
@@ -65,6 +66,12 @@ const config: DocsThemeConfig = {
   editLink: {
     text: null,
   },
+
+  search: {
+    placeholder: "Search Algorithms ..",
+  },
+
+  gitTimestamp: null,
 
   footer: {
     text: (

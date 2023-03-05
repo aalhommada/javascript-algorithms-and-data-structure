@@ -1,0 +1,59 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+
+<Tags tagItems={["Hash Table", "String", "Greedy"]} />
+## Longest Palindrome
+
+<a
+  href="https://leetcode.com/problems/longest-palindrome/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve this problem in Javascript, we can use a hash table to count the frequency of each letter in the given string. We can then iterate through the hash table and add up the counts of all letters that have an even frequency. We also need to keep track of whether there is a letter with an odd frequency. If there is, we can add one to our result because we can use that letter as the center of our palindrome.
+
+Here is the Javascript code that implements the above algorithm:
+
+```js
+function longestPalindrome(s) {
+  const freq = {};
+  for (let i = 0; i < s.length; i++) {
+    if (freq[s[i]] === undefined) {
+      freq[s[i]] = 1;
+    } else {
+      freq[s[i]]++;
+    }
+  }
+  let hasOdd = false;
+  let result = 0;
+  for (let key in freq) {
+    if (freq[key] % 2 === 0) {
+      result += freq[key];
+    } else {
+      result += freq[key] - 1;
+      hasOdd = true;
+    }
+  }
+  if (hasOdd) {
+    result++;
+  }
+  return result;
+}
+```
+
+This function **longestPalindrome** takes in a string `s` and returns an integer representing the length of the longest palindrome that can be built with the letters in `s`.
+We create an empty object called freq. This object will be used to keep track of the frequency of each letter in the string. then iterate through the string `s` and update the freq object accordingly.
+
+For each character s[i] in the string, we check if it exists as a key in the freq object. If it does not exist, we set its value to 1. If it already exists, we increment its value by 1. This process updates the frequency of each letter in the string.
+
+create two variables called hasOdd and result. hasOdd is used to keep track of whether there is a letter in the string with an odd frequency. result is used to keep track of the length of the longest palindrome that can be built with the letters in the string.
+
+iterate through the freq object using a for...in loop. For each key `key` in the `freq` object, we check if its frequency (freq[key]) is even or odd. If it is even, we add its frequency to result. If it is odd, we add its frequency minus 1 to result (because we can only use even numbers of letters to build a palindrome). We also set hasOdd to true if we encounter a letter with an odd frequency.
+
+If hasOdd is true, it means there is a letter with an odd frequency in the string. In this case, we can use this letter as the center of our palindrome. Therefore, we add 1 to result to account for this letter.
+
+Finally, we return result, which represents the length of the longest palindrome that can be built with the letters in the string.
+
+The time complexity of this algorithm is **O(n)**, where n is the length of the input string s. This is because we only need to iterate through the string once to build the frequency hash table and once more to compute the result. The space complexity is also **O(n)**, because we need to store the frequency of each letter in the hash table.

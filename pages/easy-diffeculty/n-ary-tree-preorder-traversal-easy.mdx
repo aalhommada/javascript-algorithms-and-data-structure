@@ -1,0 +1,45 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+
+<Tags tagItems={["Stack", "Tree", "Depth-First Search"]} />
+## N-ary Tree Preorder Traversal
+
+<a
+  href="https://leetcode.com/problems/n-ary-tree-preorder-traversal/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve this problem, we can use a recursive approach to perform a preorder traversal of the n-ary tree. In a preorder traversal, we first visit the current node, then recursively visit each of its children from left to right.
+
+Here is the Javascript code that implements the above algorithm:
+
+```js
+function preorder(root) {
+  const result = [];
+  if (!root) {
+    return result;
+  }
+  result.push(root.val);
+  for (let i = 0; i < root.children.length; i++) {
+    result.push(...preorder(root.children[i]));
+  }
+  return result;
+}
+```
+
+The function **preorder** takes in the root node of the n-ary tree and returns an array of integers representing the preorder traversal of the tree.
+
+The first thing we do in the function is create an empty array result to store the preorder traversal.
+
+Next, we check if the root node is null. If it is null, we return the result array.
+
+If the root node is not null, we add its value (root.val) to the result array.
+
+We then iterate through the children of the root node using a for loop. For each child, we recursively call the preorder function and concatenate its result to the result array using the spread operator (...).
+
+Finally, we return the `result` array.
+
+The time complexity of this algorithm is **O(n)**, where n is the total number of nodes in the n-ary tree. This is because we need to visit each node exactly once during the preorder traversal. The space complexity is also **O(n)**, because we need to store the preorder traversal in an array of size `n`. However, the actual space used by the function call stack is O(h), where h is the height of the n-ary tree. This is because the function calls are recursive and the maximum depth of the function call stack is equal to the height of the tree.

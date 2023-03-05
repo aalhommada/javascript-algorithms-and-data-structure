@@ -1,0 +1,61 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+
+<Tags tagItems={["Tree", "Breadth-First Search", "Binary Tree"]} />
+## Binary Tree Level Order Traversal
+
+<a
+  href="https://leetcode.com/problems/binary-tree-level-order-traversal/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The solution to the Binary Tree Level Order Traversal problem can be achieved through the use of Breadth First Search (BFS) algorithm. In this approach, we traverse the tree level by level, starting from the root node.
+
+We can implement this algorithm using a queue data structure. Initially, we push the root node into the queue, and while the queue is not empty, we dequeue the first node and add its value to the result array. Then, we enqueue its left and right child nodes (if any) into the queue. We repeat this process until the queue is empty.
+
+Here's the JavaScript code that implements the solution:
+
+```js
+function levelOrder(root) {
+  if (!root) return [];
+
+  const result = [];
+  const queue = [root];
+
+  while (queue.length > 0) {
+    const levelSize = queue.length;
+    const currentLevel = [];
+
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+      currentLevel.push(node.val);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    result.push(currentLevel);
+  }
+
+  return result;
+}
+```
+
+We define a function called **levelOrder** that takes in the `root` of a binary tree as its parameter, If the root is null or undefined, we return an empty array, since there are no nodes to traverse.
+
+Initialize an empty `result` array to store the level order traversal and a `queue` array to hold the nodes as we traverse them. We start by adding the root node to the queue, then start a while loop that continues until the queue is empty. This loop will process each level of the binary tree.
+
+At the start of each iteration of the while loop, we record the number of nodes in the current level of the binary tree by setting levelSize to the current length of the queue. We also initialize an empty `currentLevel` array to store the values of the nodes in the current level.
+
+We start another for loop that iterates levelSize number of times, since we know that there are levelSize number of nodes in the current level. For each iteration of the loop, we dequeue the first node from the queue using `queue.shift()`, store its value in node, and push the value to the currentLevel array using `currentLevel.push(node.val)`.
+
+After we have processed the current node, we check if it has any left or right child nodes. If it does, we enqueue those child nodes into the queue array using `queue.push(node.left)` and `queue.push(node.right)`.
+
+After processed all the nodes in the current level, we push the `currentLevel` array, which contains the values of the nodes in that level, into the result array using `result.push(currentLevel)`.
+
+After we have processed all levels of the binary tree, we exit the while loop and return the result array, which now contains the level order traversal of the binary tree.
+
+The time complexity of this solution is **O(n)**, where n is the number of nodes in the binary tree, because we visit each node exactly once. The space complexity is also **O(n)**, because in the worst case scenario, the queue can contain all the nodes in the last level of the tree.
