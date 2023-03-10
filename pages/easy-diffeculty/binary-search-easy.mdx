@@ -1,0 +1,45 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+
+<Tags tagItems={["Array", "Binary Search"]} />
+## Binary Search
+
+<a
+  href="https://leetcode.com/problems/binary-search/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+Binary Search is a searching algorithm that works by repeatedly dividing the search interval in half. It starts by comparing the target value to the middle element of the sorted array. If the target value matches the middle element, the search is complete. Otherwise, if the target value is less than the middle element, the search continues in the lower half of the array, otherwise, the search continues in the upper half of the array. This process continues until the target value is found or the search interval is empty.
+
+Here is an implementation of the Binary Search algorithm in JavaScript:
+
+```js
+function binarySearch(nums, target) {
+  let start = 0;
+  let end = nums.length - 1;
+
+  while (start <= end) {
+    const mid = Math.floor((start + end) / 2);
+    if (nums[mid] === target) {
+      return mid;
+    } else if (nums[mid] < target) {
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+  }
+
+  return -1;
+}
+```
+
+This function **binarySearch** takes two arguments: the `nums` (the sorted array to search) and the `target` (the value to search for). The function starts by initializing two variables: `start` and `end`, which represent the first and last indices of the search interval. It then enters a while loop that continues as long as the start index is less than or equal to the end index.
+
+In each iteration of the loop, the function calculates the mid index of the search interval using the formula (start + end) / 2. It then compares the value at the mid index to the target value. If they are equal, the function returns the mid index. If the value at the mid index is less than the target value, the function updates the start index to be mid + 1 (i.e., it discards the lower half of the search interval). Otherwise, if the value at the mid index is greater than the target value, the function updates the end index to be mid - 1 (i.e., it discards the upper half of the search interval).
+
+If the while loop completes and the function has not yet returned, it means the target value was not found in the array, so the function returns -1.
+
+The time complexity of the Binary Search algorithm is **O(log n)**, where n is the number of elements in the sorted array. This is because the search interval is divided in half at each iteration of the while loop, leading to a worst-case scenario of log₂ n iterations.

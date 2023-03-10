@@ -18,9 +18,9 @@ The two-sum problem is a classic algorithmic problem that asks if there are two 
 function twoSum(nums, target) {
   const numMap = new Map();
   for (let i = 0; i < nums.length; i++) {
-    const complement = target - nums[i];
-    if (numMap.has(complement)) {
-      return [numMap.get(complement), i];
+    const complementary = target - nums[i];
+    if (numMap.has(complementary)) {
+      return [numMap.get(complementary), i];
     }
     numMap.set(nums[i], i);
   }
@@ -28,6 +28,6 @@ function twoSum(nums, target) {
 }
 ```
 
-The function twoSum takes two arguments: an array of numbers nums and a target value target. The function uses a Map to keep track of the numbers it has seen so far. For each number in nums, the function calculates its complement (the difference between the target value and the current number) and checks if the complement is already in the Map. If the complement is in the Map, the function returns an array containing the indices of the two numbers that add up to the target value. If the complement is not in the Map, the function adds the current number and its index to the Map and continues to the next number in nums. If no two numbers add up to the target value, the function returns an empty array.
+The function twoSum takes two arguments: an array of numbers nums and a target value target. The function uses a Map to keep track of the numbers it has seen so far. For each number in nums, the function calculates its complementary (the difference between the target value and the current number) and checks if the complementary is already in the Map. If the complementary is in the Map, the function returns an array containing the indices of the two numbers that add up to the target value. If the complementary is not in the Map, the function adds the current number and its index to the Map and continues to the next number in nums. If no two numbers add up to the target value, the function returns an empty array.
 
 The time complexity of this algorithm is O(n), where n is the length of the input array nums. This is because the algorithm iterates through the array once and performs constant-time operations (such as Map.has, Map.get, and Map.set) for each number in the array. The space complexity of the algorithm is also O(n), because the Map can contain up to n key-value pairs.
