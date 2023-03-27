@@ -1,0 +1,49 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+
+<Tags tagItems={["Array", "Two Pointers", "Greedy"]} />
+## Container With Most Water
+
+<a
+  href="https://leetcode.com/problems/container-with-most-water/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve this problem, we can use the two-pointer approach.
+
+We will start with two pointers, one pointing to the first element and the other pointing to the last element of the array.
+We will calculate the area between these two lines and update our maximum area accordingly, then move the pointer that corresponds to the smaller height inward, since moving the pointer corresponding to the larger height will not increase the area.
+
+Here's the JavaScript code to solve the problem:
+
+```js
+function maxArea(height) {
+  let maxArea = 0;
+  let left = 0;
+  let right = height.length - 1;
+  while (left < right) {
+    const currentArea = Math.min(height[left], height[right]) * (right - left);
+    maxArea = Math.max(maxArea, currentArea);
+    if (height[left] < height[right]) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+  return maxArea;
+}
+```
+
+The width of the container is given by the difference between the two indices `right` and `left`, which is `(right - left)`.
+
+The height of the container is determined by the smaller of the two heights at the current positions of the pointers. This is because the water level cannot be higher than the shorter of the two lines. So, we take the minimum of `height[left]` and `height[right]` using the `Math.min()` function.
+
+Therefore, the area of the container is calculated as `Math.min(height[left], height[right]) \* (right - left)`. This area is then compared with the maximum area seen so far, and the maximum of the two is stored in the maxArea variable.
+
+The time complexity of this solution is **O(n)**, where `n` is the length of the input array.
+This is because we are iterating through the array once using two pointers.
+
+The space complexity of this solution is **O(1)**, since we are only using constant extra space to store the maximum area and the two pointers.

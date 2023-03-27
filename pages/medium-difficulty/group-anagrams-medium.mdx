@@ -1,0 +1,40 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+
+<Tags tagItems={["Array", "Hash Table", "String", "Sorting"]} />
+## Group Anagrams
+
+<a
+  href="https://leetcode.com/problems/group-anagrams/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve this problem, we can use a hash map to group anagrams together. We will iterate through the array of strings and sort each string in alphabetical order.
+
+We will then use the sorted string as a key in our hash map and store the original unsorted string as a value in an array. If we encounter a new string that has the same sorted form as a previous string, we can simply append it to the array associated with that key.
+
+After we have processed all the strings, we can return the values of the hash map as an array of arrays.
+
+Here's the JavaScript code to solve the problem:
+
+```js
+function groupAnagrams(strs) {
+  const map = new Map();
+  for (let str of strs) {
+    const sortedStr = str.split("").sort().join("");
+    if (map.has(sortedStr)) {
+      map.get(sortedStr).push(str);
+    } else {
+      map.set(sortedStr, [str]);
+    }
+  }
+  return Array.from(map.values());
+}
+```
+
+The time complexity of this solution is **O(n \* k log k)**, where `n` is the length of the input array and `k` is the maximum length of a string in the array. This is because we are iterating through each string in the array and sorting it, which takes **_O(k log k)_** time.
+
+The space complexity of this solution is **_O(n \* k)_**, since we need to store all the strings and their sorted forms in the hash map.
