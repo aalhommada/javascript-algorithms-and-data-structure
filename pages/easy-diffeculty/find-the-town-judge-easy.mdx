@@ -1,0 +1,61 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+
+<Tags tagItems={["Graph", "Hash Table", "Array"]} />
+## Find the Town Judge
+
+<a
+  href="https://leetcode.com/problems/find-the-town-judge/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve this problem, we need to count the number of people who trust each person in the town. The person who is trusted by all other people and trusts nobody else is the town judge.
+
+```bash
+example :
+n = 3, trust = [[1,3],[2,3]]
+
+[1,3]
+1 trust -> 3
+
+[2,3]
+2 trust -> 3
+
+3 = n - 1
+3 trust no one
+
+then 3 is the judge
+
+```
+
+We can use an array to keep track of the number of people who trust each person. We iterate through the trust array and increment the count of the second person in each trust relationship. Then, we iterate through the count array to find the person who is trusted by all other people and trusts nobody else.
+
+Here's the JavaScript code to solve the problem:
+
+```js
+function findJudge(n, trust) {
+  const count = new Array(n + 1).fill(0);
+  for (const [a, b] of trust) {
+    count[b]++;
+  }
+  for (let i = 1; i <= n; i++) {
+    if (count[i] === n - 1 && !trust.some(([a, b]) => a === i)) {
+      return i;
+    }
+  }
+  return -1;
+}
+```
+
+In the iteration, we check if the count value of a person is equal to `n - 1`, which means that all other people in the town trust that person except for themselves. The town judge is the only person in the town who is not included in this count, hence the count value should be equal to `n - 1`.
+
+Then we check if this person trusts nobody, which means there should not be any trust relationship where this person is the first element. We use the some() method of the trust array to check if there is any trust relationship where the first element is equal to i. If there is, it means this person trusts somebody and is not the town judge, so we skip this person and move on to the next one.
+
+If the above conditions are satisfied, we have found the town judge and return their label i. If we have iterated through all the people in the town and haven't found the town judge, we return -1 as there is no town judge in the town.
+
+The time complexity of this solution is **O(T + N)**, where `T` is the length of the trust array and `N` is the number of people in the town.
+
+This is because we iterate through the trust array once to count the number of people who trust each person, and then iterate through the count array once to find the town judge. The space complexity is **O(N)** for the count array.
