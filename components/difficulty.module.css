@@ -1,0 +1,24 @@
+.easy {
+  color: green;
+  background-color: lightgreen;
+  width: fit-content;
+  border-radius: 15px;
+  padding: 2px 6px;
+  margin-top: 2px;
+}
+.medium {
+  color: orange;
+  background-color: rgb(255, 250, 235);
+  width: fit-content;
+  border-radius: 15px;
+  padding: 2px 6px;
+  margin-top: 2px;
+}
+.hard {
+  color: red;
+  background-color: rgb(237, 202, 202);
+  width: fit-content;
+  border-radius: 15px;
+  padding: 2px 6px;
+  margin-top: 2px;
+}

@@ -1,0 +1,49 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["String", "Stack"]} />
+<Difficulty difficulty={"easy"} />
+## Valid Parentheses
+
+<a
+  href="https://leetcode.com/problems/valid-parentheses/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+The Valid Parentheses problem is a classic problem in computer science that involves determining whether a given string of parentheses is valid or not. A string is considered valid if every open bracket has a corresponding closing bracket and they are in the correct order.
+
+Here's a solution to the Valid Parentheses problem using JavaScript:
+
+```js
+function isValidParentheses(str) {
+  const stack = [];
+  const map = {
+    "(": ")",
+    "[": "]",
+    "{": "}",
+  };
+
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+
+    if (map[char]) {
+      stack.push(map[char]);
+    } else if (char !== stack.pop()) {
+      return false;
+    }
+  }
+
+  return stack.length === 0;
+}
+```
+
+This solution uses a stack data structure to keep track of the opening parentheses. It then compares each closing parenthesis to the top of the stack to ensure that they match.
+
+If the closing parenthesis doesn't match the top of the stack, the function returns false. If the stack is empty at the end of the loop, the parentheses are considered valid and the function returns true.
+
+The time complexity of this solution is **O(n)** where `n` is the length of the input string.
+This is because the algorithm loops through each character in the string once. The space complexity is also **O(n)** because in the worst case scenario where all characters are opening parentheses, the stack will contain all of them.
