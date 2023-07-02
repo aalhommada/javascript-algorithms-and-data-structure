@@ -5,13 +5,5 @@
     "type": "page",
     "href": "https://aalhommada.com",
     "newWindow": true
-  },
-  "easy-difficulty": {
-    "title": "Easy Difficulty",
-    "type": "page"
-  },
-  "medium-difficulty": {
-    "title": "Medium Difficulty",
-    "type": "page"
   }
 }

@@ -1,0 +1,90 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Math", "Array", "Hash Table", "Counting"]} />
+<Difficulty difficulty={"easy"} />
+## Number of Good Pairs
+
+<a
+  href="https://leetcode.com/problems/number-of-good-pairs/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+We can slove this challenge using differt ways, here is one of it :
+
+```js
+const nums = [1, 2, 3, 1, 1, 3];
+
+let count = 0;
+const occurrences = {};
+
+for (const num of nums) {
+  if (occurrences[num]) {
+    count += occurrences[num];
+    occurrences[num]++;
+  } else {
+    occurrences[num] = 1;
+  }
+}
+
+console.log(count);
+
+// the output is 3
+```
+
+In this code, we initialize a variable count to keep track of the number of good pairs and an object occurrences to store the number of occurrences of each element.
+
+We iterate through the nums array using a for...of loop. For each element num, we check if it already exists in the occurrences object. If it does, we increment count by the number of occurrences stored in occurrences[num] and then increment the value in occurrences[num] by 1. This accounts for all the new good pairs formed by the current element. If num doesn't exist in occurrences, we initialize it with a value of 1.
+
+Finally, we output the value of count, which represents the total number of good pairs in the nums array.
+
+The time complexity of the provided solution is O(n), where n is the length of the `nums` array.
+
+In the solution, we iterate through the `nums` array once using a `for...of` loop. Since we process each element of the array only once, the time complexity is directly proportional to the size of the input, which is O(n).
+
+Within the loop, we perform constant-time operations like checking if an element exists in the `occurrences` object and updating its value. These operations do not depend on the size of the input and do not affect the overall time complexity.
+
+Therefore, the overall time complexity of the solution is O(n), indicating a linear time complexity.
+
+### Another way to solve it using Reduce function:
+
+```js
+const nums = [1, 2, 3, 1, 1, 3];
+
+const countGoodPairs = nums.reduce((count, num, index, arr) => {
+  const occurrences = arr.slice(index + 1).filter((n) => n === num);
+  return count + occurrences.length;
+}, 0);
+
+console.log(countGoodPairs);
+// the output is 4
+```
+
+In this code, the reduce function takes two arguments: a callback function and an initial value for the count (in this case, 0).
+
+Inside the callback function, we use the slice method to create a new array occurrences that contains all the elements after the current element num. We then use the filter method to keep only the elements that are equal to num. This gives us an array of all the occurrences of num after the current index.
+
+Finally, we return the updated count by adding the length of the occurrences array to the previous count. The reduce function will accumulate this count over each iteration.
+
+The result will be the total number of good pairs in the nums array.
+
+The complexity of the last solution using the `reduce` function is O(n^2), where n is the length of the `nums` array.
+
+Within the `reduce` callback function, we are using the `slice` method to create a new array `occurrences` by copying a portion of the `arr` array. The `slice` method has a time complexity of O(k), where k is the length of the portion being sliced. Since we are slicing from index `index + 1` to the end of the array, the length of `occurrences` will be `(n - index - 1)`, where n is the length of the `nums` array.
+
+Then, we are using the `filter` method to iterate over the `occurrences` array and filter out the elements that are equal to `num`. The `filter` method has a time complexity of O(m), where m is the length of the array being filtered. In this case, m is `(n - index - 1)`.
+
+Since we are performing these operations for each element in the `nums` array, the overall time complexity becomes the sum of these operations over all iterations. Considering worst-case scenarios where the entire array is processed, the time complexity is as follows:
+
+```
+O(1) + O(2) + O(3) + ... + O(n-2) + O(n-1)
+= O(1 + 2 + 3 + ... + n-2 + n-1)
+= O((n-1)(n-2)/2)
+= O(n^2)
+```
+
+Therefore, the overall time complexity of the solution is O(n^2), indicating a quadratic time complexity.

@@ -1,0 +1,59 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+
+<Tags tagItems={["Sorting", "Array", "Hash Table"]} />
+## Top K Frequent Elements
+
+<a
+  href="https://leetcode.com/problems/top-k-frequent-elements/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To find the k most frequent elements in an integer array using JavaScript, you can follow these steps:
+
+- Initialize an empty object frequency to store the frequency count.
+- Iterate over each element n in the nums array.
+  If the element n already exists in the frequency object, increment its count by 1.
+  If the element n doesn't exist in the frequency object, set its count to 1.
+
+- Obtain the keys (elements) from the frequency object using Object.keys().
+- Sort the keys in descending order based on their corresponding frequency count. This is achieved by providing a custom sort function that compares the frequency count of each key (a and b) using frequency[b] - frequency[a].
+
+- Slice the sorted keys to return only the first k elements.
+
+Return the resulting array of the top k frequent elements.
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+var topKFrequent = function (nums, k) {
+  const frequency = {};
+
+  for (let n of nums) {
+    frequency[n] = frequency[n] + 1 || 1;
+  }
+
+  const sortedFrequency = Object.keys(frequency).sort(
+    (a, b) => frequency[b] - frequency[a]
+  );
+
+  return sortedFrequency.slice(0, k);
+};
+```
+
+The time complexity of this solution depends on the size of the nums array.
+Iterating over the nums array to calculate the frequency: O(n)
+Obtaining the keys from the frequency object: O(m)
+Sorting the keys based on frequency: O(m log m)
+Slicing the sorted keys: O(k)
+Overall, the time complexity is determined by the largest operation, which is sorting the keys. Therefore, the simplified time complexity is O(m log m), where m represents the number of unique elements in the nums array.
+
+If all elements in the nums array are unique, m will be equal to the length of the nums array (n), resulting in a time complexity of O(n log n).
+
+the space complexity of the given solution is O(m), where m is the number of unique elements in the nums array.
