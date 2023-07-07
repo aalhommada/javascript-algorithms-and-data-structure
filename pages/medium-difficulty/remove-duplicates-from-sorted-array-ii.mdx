@@ -1,0 +1,70 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Array", "Tow Pointers"]} />
+<Difficulty difficulty={"medium"} />
+## Remove Duplicates from Sorted Array II
+
+<a
+  href="https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve this problem in JavaScript, you can use the two-pointer approach to modify the array in-place.
+
+- Handle the edge case where the array is empty by returning 0.
+
+- Initialize the variables: count to keep track of the count of unique elements, duplicateCount to keep track of the count of duplicates (initialized as 1 since the first element is unique), and prev to store the value of the previous element.
+
+- Iterate through the array starting from the second element (index 1).
+  If the current element is equal to the previous element, check if the duplicates count is less than 2. If so, it means we can include the current element as a duplicate. Move the element to the next unique position by assigning it to nums[count], increment count to account for the new unique element, and increment duplicateCount.
+
+- If the current element is different from the previous element, it means we have encountered a new unique element. Move the element to the next unique position by assigning it to nums[count], increment count to account for the new unique element, reset duplicateCount to 1 since the current element is the first occurrence, and update prev to the current element.
+
+- After the loop ends, return the value of count, which represents the count of unique elements in the modified array.
+
+```js
+function removeDuplicates(nums) {
+  // Edge case: If the array is empty, return 0
+  if (nums.length === 0) {
+    return 0;
+  }
+
+  // Initialize variables
+  let count = 1; // Count of unique elements
+  let duplicateCount = 1; // Count of duplicates
+  let prev = nums[0]; // Previous element
+
+  // Iterate from the second element onwards
+  for (let i = 1; i < nums.length; i++) {
+    // If the current element is equal to the previous element
+    if (nums[i] === prev) {
+      // If duplicates count is less than or equal to 2
+      if (duplicateCount < 2) {
+        nums[count] = nums[i]; // Move the element to the next unique position
+        count++; // Increment count of unique elements
+        duplicateCount++; // Increment duplicates count
+      }
+    }
+    // If the current element is different from the previous element
+    else {
+      nums[count] = nums[i]; // Move the element to the next unique position
+      count++; // Increment count of unique elements
+      duplicateCount = 1; // Reset duplicates count
+      prev = nums[i]; // Update the previous element
+    }
+  }
+
+  return count; // Return the count of unique elements
+}
+```
+
+The array nums will be modified in-place, and the first count elements will hold the final result. Any elements beyond the first count elements can have any arbitrary values and are not considered part of the solution.
+
+The time complexity of this solution is **O(n)**, where n is the length of the `nums` array. This is because we iterate through the array once, comparing each element with the previous element.
+
+The space complexity is **O(1)** because we are modifying the `nums` array in-place and using a constant amount of extra memory for the variables `count`, `duplicateCount`, and `prev`. We are not allocating any additional data structures that scale with the input size.

@@ -1,0 +1,62 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Array", "Tow pointers", "Sorting"]} />
+<Difficulty difficulty={"easy"} />
+## Merge Sorted Array
+
+<a
+  href="https://leetcode.com/problems/merge-sorted-array/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To merge two sorted arrays nums1 and nums2 into a single array, you can use a two-pointer approach. The idea is to start from the end of the arrays (taking advantage of the extra space in nums1) and compare the elements from both arrays, placing the larger element at the end of nums1.
+
+Here's the JavaScript implementation:
+
+```javascript
+function merge(nums1, m, nums2, n) {
+  let i = m - 1; // Pointer for nums1
+  let j = n - 1; // Pointer for nums2
+  let k = m + n - 1; // Pointer for merged array (nums1)
+
+  // Compare elements from both arrays and place the larger element at the end of nums1
+  while (i >= 0 && j >= 0) {
+    if (nums1[i] > nums2[j]) {
+      nums1[k] = nums1[i];
+      i--;
+    } else {
+      nums1[k] = nums2[j];
+      j--;
+    }
+    k--;
+  }
+
+  // If there are remaining elements in nums2, place them in nums1
+  while (j >= 0) {
+    nums1[k] = nums2[j];
+    j--;
+    k--;
+  }
+}
+```
+
+To merge the arrays, you would call the `merge` function passing the respective arrays and their lengths as arguments. For example:
+
+```javascript
+const nums1 = [1, 2, 3, 0, 0, 0]; // Array with extra space
+const m = 3; // Number of elements in nums1
+const nums2 = [2, 5, 6]; // Array to be merged
+const n = 3; // Number of elements in nums2
+
+merge(nums1, m, nums2, n);
+
+console.log(nums1); // Output: [1, 2, 2, 3, 5, 6]
+```
+
+The time complexity of this solution is **O(m + n)** because we iterate through both arrays once.
+The space complexity is **O(1)**
