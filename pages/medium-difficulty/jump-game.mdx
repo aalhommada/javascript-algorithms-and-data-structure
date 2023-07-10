@@ -1,0 +1,73 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Array", "Dynamic Programming", "Greedy"]} />
+<Difficulty difficulty={"medium"} />
+## Jump Game
+
+<a
+  href="https://leetcode.com/problems/jump-game/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve this problem using dynamic programming and greedy algorithms in JavaScript, you can follow these approaches:
+
+### Dynamic Programming Approach:
+
+1. Create an array called "dp" of the same length as the input array "nums" and initialize it with all false values. This array will store whether it's possible to reach each index from the first index.
+2. Set dp[0] to true since we can always reach the first index.
+3. Iterate through the input array from left to right.
+4. For each index i, if dp[i] is true (indicating we can reach this index), update the next dp[j] values where j is in the range [i+1, i+nums[i]]. Set these values to true since we can reach those indices from index i.
+5. Finally, return dp[nums.length - 1], which will indicate whether we can reach the last index.
+
+Here's the JavaScript code for the dynamic programming approach:
+
+```javascript
+function canJump(nums) {
+  const dp = new Array(nums.length).fill(false);
+  dp[0] = true;
+
+  for (let i = 0; i < nums.length; i++) {
+    if (dp[i]) {
+      for (let j = i + 1; j <= i + nums[i] && j < nums.length; j++) {
+        dp[j] = true;
+      }
+    }
+  }
+
+  return dp[nums.length - 1];
+}
+```
+
+The time complexity of this dynamic programming approach is **O(n^2)**, where n is the length of the input array "nums". The nested loop in step 4 can potentially iterate through all indices, resulting in a worst-case time complexity of **O(n^2)**.
+
+### Greedy Algorithm Approach:
+
+1. Initialize a variable called "lastPos" to nums.length - 1, indicating the last index.
+2. Iterate through the input array from right to left.
+3. For each index i, if i + nums[i] >= lastPos, update lastPos to i. This means that if we can jump from index i to lastPos, we can update lastPos to i since we only need to reach index i to reach the last index.
+4. After the loop, check if lastPos is equal to 0. If it is, return true since we can reach the last index; otherwise, return false.
+
+Here's the JavaScript code for the greedy algorithm approach:
+
+```javascript
+function canJump(nums) {
+  let lastPos = nums.length - 1;
+
+  for (let i = nums.length - 1; i >= 0; i--) {
+    if (i + nums[i] >= lastPos) {
+      lastPos = i;
+    }
+  }
+
+  return lastPos === 0;
+}
+```
+
+The time complexity of this greedy algorithm approach is **O(n)**, where n is the length of the input array "nums". We iterate through the array once in reverse order, performing a constant-time operation for each element. Hence, the time complexity is linear, **O(n)**.
+
+Both approaches yield the same result, but the greedy algorithm approach has a more optimal time complexity.

@@ -1,0 +1,81 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Array", "Dynamic Programming", "Greedy"]} />
+<Difficulty difficulty={"medium"} />
+## Jump Game
+
+<a
+  href="https://leetcode.com/problems/jump-game/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve this problem using dynamic programming and greedy algorithms in JavaScript, we can follow these steps:
+
+### Dynamic Programming Approach:
+
+- Create an array `dp` of length `n`, initialized with maximum possible values except for `dp[0] = 0` since we start at index 0.
+- Iterate through the array `nums` from left to right.
+- For each index `i`, check if it is reachable from any previous index `j (0 <= j < i)` and update `dp[i]` with the minimum number of jumps required to reach index `i`.
+- To update `dp[i]`, compare the current value of `dp[i]` with `dp[j] + 1` and take the minimum.
+- Finally, return `dp[n-1]`, which represents the minimum number of jumps required to reach the last index.
+
+Here's the JavaScript code for the dynamic programming approach:
+
+```javascript
+function minJumps(nums) {
+  const n = nums.length;
+  const dp = new Array(n).fill(Number.MAX_SAFE_INTEGER);
+  dp[0] = 0;
+
+  for (let i = 1; i < n; i++) {
+    for (let j = 0; j < i; j++) {
+      if (j + nums[j] >= i) {
+        dp[i] = Math.min(dp[i], dp[j] + 1);
+      }
+    }
+  }
+
+  return dp[n - 1];
+}
+```
+
+The time complexity of this dynamic programming approach is **O(n^2)** since we have nested loops iterating through the array.
+
+### Greedy Approach:
+
+- Initialize three variables: `currJump` to store the maximum reachable index from the current position, `maxJump` to store the maximum reachable index so far, and `jumps` to count the minimum number of jumps.
+- Iterate through the array `nums` from left to right.
+- For each index `i`, update `maxJump` by taking the maximum of `maxJump` and `i + nums[i]`.
+- If the current index `i` is equal to `currJump`, it means we have reached the maximum reachable index from the previous jump. So, update `currJump` with `maxJump` and increment `jumps`.
+- Continue iterating until `currJump` reaches the last index.
+- Finally, return `jumps`, which represents the minimum number of jumps required to reach the last index.
+
+Here's the JavaScript code for the greedy approach:
+
+```javascript
+function minJumps(nums) {
+  const n = nums.length;
+  let currJump = 0;
+  let maxJump = 0;
+  let jumps = 0;
+
+  for (let i = 0; i < n - 1; i++) {
+    maxJump = Math.max(maxJump, i + nums[i]);
+    if (i === currJump) {
+      currJump = maxJump;
+      jumps++;
+    }
+  }
+
+  return jumps;
+}
+```
+
+The time complexity of this greedy approach is **O(n)** since we only iterate through the array once.
+
+Both approaches provide a solution to find the minimum number of jumps required to reach the last index. The choice between using dynamic programming or a greedy approach depends on the specific requirements and constraints of the problem. In this case, the greedy approach offers a more efficient solution.
