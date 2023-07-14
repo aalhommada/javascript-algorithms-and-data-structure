@@ -1,0 +1,52 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Array", "Sorting", "Counting Sort"]} />
+<Difficulty difficulty={"medium"} />
+## H-Index
+
+<a
+  href="https://leetcode.com/problems/h-index/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To find the researcher's h-index from an array of citations, you can follow the steps below in JavaScript:
+
+1. Sort the array of citations in non-decreasing order.
+2. Initialize a variable `hIndex` to 0, which will store the maximum h-index.
+3. Iterate through the sorted array of citations, starting from the largest value.
+   - For each iteration, check if the current citation value is greater than or equal to the current `hIndex + 1`.
+     - If true, increment `hIndex` by 1.
+     - If false, break the loop.
+4. After the loop, `hIndex` will contain the maximum h-index for the given array.
+
+Here's the JavaScript code that implements the above steps:
+
+```javascript
+function calculateHIndex(citations) {
+  citations.sort((a, b) => b - a); // Sort the array in non-decreasing order
+
+  let hIndex = 0;
+
+  for (let i = 0; i < citations.length; i++) {
+    if (citations[i] >= hIndex + 1) {
+      hIndex++;
+    } else {
+      break;
+    }
+  }
+
+  return hIndex;
+}
+
+// Example usage:
+const citations = [3, 0, 6, 1, 5];
+const hIndex = calculateHIndex(citations);
+console.log("The researcher's h-index is: " + hIndex);
+```
+
+The time complexity of this solution is **O(n log n)**, where n is the number of elements in the citations array. This is due to the initial sorting of the array. The subsequent loop to calculate the h-index has a linear time complexity of **O(n)**, as it iterates through the sorted array once.
