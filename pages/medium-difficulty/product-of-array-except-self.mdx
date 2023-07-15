@@ -1,0 +1,55 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Array", "Prefix Sum"]} />
+<Difficulty difficulty={"medium"} />
+## Product of Array Except Self
+
+<a
+  href="https://leetcode.com/problems/product-of-array-except-self/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve this problem, we can use the concept of prefix and suffix products. We'll create two arrays: `prefix` and `suffix`.
+
+The `prefix` array will store the product of all elements to the left of `nums[i]`, and the `suffix` array will store the product of all elements to the right of `nums[i]`.
+
+We can then calculate the answer array by multiplying `prefix[i]` with `suffix[i]` for each index `i`.
+
+Here's the JavaScript code that implements this algorithm:
+
+```javascript
+function productExceptSelf(nums) {
+  const n = nums.length;
+  const prefix = new Array(n);
+  const suffix = new Array(n);
+  const answer = new Array(n);
+
+  // Calculate prefix products
+  prefix[0] = 1;
+  for (let i = 1; i < n; i++) {
+    prefix[i] = prefix[i - 1] * nums[i - 1];
+  }
+
+  // Calculate suffix products
+  suffix[n - 1] = 1;
+  for (let i = n - 2; i >= 0; i--) {
+    suffix[i] = suffix[i + 1] * nums[i + 1];
+  }
+
+  // Calculate answer array
+  for (let i = 0; i < n; i++) {
+    answer[i] = prefix[i] * suffix[i];
+  }
+
+  return answer;
+}
+```
+
+The time complexity of this algorithm is O(n) because we iterate over the array three times, and each iteration takes linear time. The space complexity is also O(n) because we use three additional arrays of the same length as the input array.
+
+Note that the solution avoids using division and guarantees that the product of any prefix or suffix of `nums` will fit in a 32-bit integer, as specified in the problem statement.

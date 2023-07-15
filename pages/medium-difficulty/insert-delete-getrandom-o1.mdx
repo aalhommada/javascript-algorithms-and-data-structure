@@ -1,0 +1,71 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Array", "Hash Table", "Math", "Design", "Randomized"]} />
+<Difficulty difficulty={"medium"} />
+## Insert Delete GetRandom O(1)
+
+<a
+  href="https://leetcode.com/problems/insert-delete-getrandom-o1/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To implement the `RandomizedSet` class in JavaScript with average O(1) time complexity for each operation, we can use a combination of an array and an object. The array will store the elements in the set, while the object will map each element to its corresponding index in the array. This allows us to achieve constant time complexity for insert and remove operations, as well as getRandom.
+
+Here's the implementation:
+
+```javascript
+var RandomizedSet = function () {
+  this.set = []; // Array to store the elements
+  this.indexMap = {}; // Object to map element to its index
+};
+
+RandomizedSet.prototype.insert = function (val) {
+  if (this.indexMap[val] !== undefined) {
+    return false; // Element already exists in the set
+  }
+
+  this.set.push(val); // Add element to the end of the array
+  this.indexMap[val] = this.set.length - 1; // Map element to its index
+  return true;
+};
+
+RandomizedSet.prototype.remove = function (val) {
+  if (this.indexMap[val] === undefined) {
+    return false; // Element doesn't exist in the set
+  }
+
+  const lastIndex = this.set.length - 1;
+  const index = this.indexMap[val]; // Get the index of the element to be removed
+  const lastElement = this.set[lastIndex];
+
+  // Swap the element to be removed with the last element in the array
+  this.set[index] = lastElement;
+  this.indexMap[lastElement] = index;
+
+  // Remove the element from the array and index map
+  this.set.pop();
+  delete this.indexMap[val];
+
+  return true;
+};
+
+RandomizedSet.prototype.getRandom = function () {
+  const randomIndex = Math.floor(Math.random() * this.set.length);
+  return this.set[randomIndex];
+};
+```
+
+Time Complexity:
+
+- The `insert` operation has an average time complexity of O(1) because both array push and object assignment are constant time operations.
+- The `remove` operation has an average time complexity of O(1) because it involves swapping elements and updating the index map, which are constant time operations.
+- The `getRandom` operation has a time complexity of O(1) since we are generating a random index and accessing the element directly from the array.
+
+Space Complexity:
+
+- The space complexity is O(N), where N is the number of elements in the set. We are using an array to store the elements, which requires O(N) space. Additionally, we have an object (indexMap) that stores the mapping of elements to their indices, which also requires O(N) space in the worst case.
