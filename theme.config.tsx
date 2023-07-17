@@ -70,6 +70,16 @@ const config: DocsThemeConfig = {
   search: { component: null },
 
   gitTimestamp: null,
+  sidebar: {
+    titleComponent({ title, type }) {
+      if (type === "separator") {
+        return <span className="cursor-default">{title}</span>;
+      }
+      return <>{title}</>;
+    },
+    defaultMenuCollapseLevel: 1,
+    autoCollapse: false,
+  },
 
   footer: {
     text: (
