@@ -1,5 +1,14 @@
 {
   "index": "Algorithms and Data structure crash course",
+  "easy-difficulty": {
+    "title": "Easy Difficulty",
+    "theme": {
+      "toc": true,
+      "breadcrumb": true
+    }
+  },
+  "medium-difficulty": "Medium Difficulty",
+  "hard-difficulty": "Hard Difficulty",
   "contact": {
     "title": "Contact ↗",
     "type": "page",

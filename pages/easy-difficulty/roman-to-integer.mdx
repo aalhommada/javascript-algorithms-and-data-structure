@@ -1,0 +1,63 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Hash Table", "Math", "String"]} />
+<Difficulty difficulty={"easy"} />
+## Roman to Integer
+
+<a
+  href="https://leetcode.com/problems/roman-to-integer/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To convert a Roman numeral to an integer in JavaScript, you can follow these steps:
+
+1. Create a dictionary object to map each Roman symbol to its corresponding value.
+2. Initialize a variable `result` to store the final integer value.
+3. Iterate through the Roman numeral string from left to right.
+4. Check if the current symbol is less than the next symbol. If so, subtract the current value from the result. Otherwise, add the current value to the result.
+5. Return the final result.
+
+Here's the JavaScript code implementation:
+
+```javascript
+function romanToInt(s) {
+  const symbolValues = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+
+  let result = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    const currentSymbolValue = symbolValues[s[i]];
+    const nextSymbolValue = symbolValues[s[i + 1]];
+
+    if (nextSymbolValue && currentSymbolValue < nextSymbolValue) {
+      result -= currentSymbolValue;
+    } else {
+      result += currentSymbolValue;
+    }
+  }
+
+  return result;
+}
+
+// Example usage:
+console.log(romanToInt("III")); // Output: 3
+console.log(romanToInt("IV")); // Output: 4
+console.log(romanToInt("IX")); // Output: 9
+console.log(romanToInt("LVIII")); // Output: 58
+console.log(romanToInt("MCMXCIV")); // Output: 1994
+```
+
+The time complexity of this solution is **O(n)**, where n is the length of the input Roman numeral string. The space complexity is** O(1)** since we are using a constant amount of space regardless of the input size.

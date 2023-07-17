@@ -1,0 +1,74 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Array", "Greedy"]} />
+<Difficulty difficulty={"medium"} />
+## Gas Station
+
+<a
+  href="https://leetcode.com/problems/gas-station/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve this problem, we can use the concept of the "circular tour" from the gas station problem. The basic idea is to check if there is a possible starting point that allows us to complete a circular tour without running out of gas.
+
+1. First, we initialize some variables:
+
+   - `totalGas`: This variable keeps track of the total gas available after subtracting the total cost of the journey. We initialize it to 0.
+   - `currentGas`: This variable keeps track of the current gas available as we move from one station to the next. We initialize it to 0.
+   - `startStation`: This variable stores the index of the potential starting gas station. We initialize it to 0.
+
+2. We iterate through the gas and cost arrays using a loop:
+
+   - For each station, we calculate the difference between the gas available (`gas[i]`) and the cost to travel to the next station (`cost[i]`). This difference represents the net gas gain or loss at that station.
+   - We add this difference to both `totalGas` and `currentGas` variables.
+
+3. Inside the loop, we check if `currentGas` becomes negative:
+
+   - If `currentGas` is negative, it means we cannot reach the next station from the current starting station without running out of gas.
+   - In this case, we reset `currentGas` to 0 and move the `startStation` to the next station (`startStation = i + 1`).
+
+4. After the loop, we check if `totalGas` is negative:
+
+   - If `totalGas` is negative, it means the total cost of the journey is greater than the total gas available, and hence, we cannot complete the circular tour no matter where we start.
+   - In this case, we return -1 to indicate that there is no solution.
+
+5. If we haven't returned -1, it means there exists a solution:
+   - We return the `startStation` as the index of the gas station from where we can start the journey and complete the circular tour without running out of gas.
+
+The solution uses a greedy approach by continuously updating the starting station whenever `currentGas` becomes negative. By the end of the loop, if there is a solution, the `startStation` will hold the correct index.
+
+```JavaScript
+function canCompleteCircuit(gas, cost) {
+  const n = gas.length;
+  let totalGas = 0;
+  let currentGas = 0;
+  let startStation = 0;
+
+  for (let i = 0; i < n; i++) {
+    const diff = gas[i] - cost[i];
+    totalGas += diff;
+    currentGas += diff;
+
+    // If currentGas is negative, we cannot reach the next station.
+    // So, we reset the currentGas and move the startStation to the next station.
+    if (currentGas < 0) {
+      startStation = i + 1;
+      currentGas = 0;
+    }
+  }
+
+  // If totalGas is negative, it means the total cost is greater than the total gas available,
+  // and hence, we cannot complete the circular tour.
+  return totalGas < 0 ? -1 : startStation;
+}
+
+```
+
+The solution has a time complexity of **O(n)**, where n is the number of gas stations. We iterate through the gas and cost arrays once to calculate the total gas and check for the possible starting station.
+
+The space complexity of the solution is **O(1)** because we only use a constant amount of extra space to store the variables totalGas, currentGas, and startStation, regardless of the input size.
