@@ -1,0 +1,61 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Array", "Tow Pointers", "Dynamic Programming", "Stack"]} />
+<Difficulty difficulty={"hard"} />
+## Trapping Rain Water
+
+<a
+  href="https://leetcode.com/problems/trapping-rain-water/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve the problem of trapping rainwater on an elevation map, we can use a two-pointer approach. The idea is to maintain two pointers, one starting from the left and another from the right. We iterate through the array, comparing the heights at the left and right pointers. Based on the comparison, we update the pointers and calculate the trapped water at each position.
+
+Here's implementation of the algorithm:
+
+```javascript
+function trapRainwater(heights) {
+  let left = 0;
+  let right = heights.length - 1;
+  let leftMax = 0;
+  let rightMax = 0;
+  let waterTrapped = 0;
+
+  while (left < right) {
+    if (heights[left] < heights[right]) {
+      if (heights[left] >= leftMax) {
+        leftMax = heights[left];
+      } else {
+        waterTrapped += leftMax - heights[left];
+      }
+      left++;
+    } else {
+      if (heights[right] >= rightMax) {
+        rightMax = heights[right];
+      } else {
+        waterTrapped += rightMax - heights[right];
+      }
+      right--;
+    }
+  }
+
+  return waterTrapped;
+}
+```
+
+In this solution, we initialize the left pointer at the beginning of the array (index 0) and the right pointer at the end of the array (index `heights.length - 1`). We also initialize variables `leftMax` and `rightMax` to keep track of the maximum height encountered from the left and right sides, respectively. The `waterTrapped` variable is used to accumulate the total trapped water.
+
+We then enter a loop where we compare the heights at the left and right pointers. If the height at the left pointer is less than the height at the right pointer, we update the `leftMax` if necessary and calculate the trapped water using the difference between `leftMax` and the height at the left pointer. We then move the left pointer to the right.
+
+If the height at the right pointer is less than or equal to the height at the left pointer, we follow a similar process but update the `rightMax` instead.
+
+The loop continues until the left pointer is equal to the right pointer, indicating that we have iterated through the entire array.
+
+The time complexity of this algorithm is **O(n)**, where n is the length of the input array heights. We iterate through the array once using the two-pointer approach.
+
+The space complexity is **O(1)** because we use a constant amount of extra space regardless of the input size.

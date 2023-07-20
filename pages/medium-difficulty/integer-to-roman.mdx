@@ -1,0 +1,70 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Hash Table", "Math", "String"]} />
+<Difficulty difficulty={"medium"} />
+## Integer to Roman
+
+<a
+  href="https://leetcode.com/problems/integer-to-roman/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve the problem of converting an integer to a Roman numeral, we can create a lookup table that maps each symbol to its corresponding value. We then iterate through the lookup table in descending order, subtracting the largest possible value from the given number and appending the corresponding symbol to the result. We repeat this process until the number becomes zero.
+
+Here's implementation of the algorithm:
+
+```javascript
+function intToRoman(num) {
+  const symbols = {
+    M: 1000,
+    CM: 900,
+    D: 500,
+    CD: 400,
+    C: 100,
+    XC: 90,
+    L: 50,
+    XL: 40,
+    X: 10,
+    IX: 9,
+    V: 5,
+    IV: 4,
+    I: 1,
+  };
+
+  let roman = "";
+
+  for (const symbol in symbols) {
+    while (num >= symbols[symbol]) {
+      roman += symbol;
+      num -= symbols[symbol];
+    }
+  }
+
+  return roman;
+}
+```
+
+In this solution, we define the `symbols` object as a lookup table where the Roman numerals are mapped to their corresponding integer values.
+
+We initialize an empty string `roman` to store the resulting Roman numeral.
+
+We then iterate through the lookup table in descending order, starting from the largest symbol. While the given number `num` is greater than or equal to the current symbol's value, we subtract that value from `num` and append the corresponding symbol to the `roman` string. We repeat this process until `num` becomes zero.
+
+Finally, we return the resulting `roman` string.
+
+Here's an example usage of the `intToRoman` function:
+
+```javascript
+console.log(intToRoman(27)); // Output: "XXVII"
+console.log(intToRoman(4)); // Output: "IV"
+console.log(intToRoman(58)); // Output: "LVIII"
+```
+
+The time complexity of this algorithm is O(1) because the maximum number of iterations in the for loop is constant, regardless of the input size.
+
+The space complexity is also O(1) because we use a constant amount of extra space regardless of the input size.

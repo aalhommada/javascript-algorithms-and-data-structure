@@ -1,0 +1,48 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Array", "Sliding Window"]} />
+<Difficulty difficulty={"easy"} />
+## Maximum Average Subarray I
+
+<a
+  href="https://leetcode.com/problems/maximum-average-subarray-i/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve this problem, we can use a sliding window approach. The idea is to maintain a window of size k and move it through the array nums, calculating the average at each position. We keep track of the maximum average seen so far and update it whenever we find a higher average.
+
+Here's the JavaScript implementation of the algorithm:
+
+```javascript
+function findMaxAverage(nums, k) {
+  let sum = 0;
+
+  // Calculate the sum of the first window of size k
+  for (let i = 0; i < k; i++) {
+    sum += nums[i];
+  }
+
+  let maxAverage = sum / k;
+
+  // Slide the window through the array, updating the sum and average
+  for (let i = k; i < nums.length; i++) {
+    sum += nums[i] - nums[i - k]; // Add the next element and remove the previous first element
+    maxAverage = Math.max(maxAverage, sum / k);
+  }
+
+  return maxAverage;
+}
+```
+
+In this solution, we initialize the sum variable to hold the sum of the first window of size k. Then we iterate through the array starting from index k and calculate the sum by adding the next element and subtracting the element that falls outside the window. We update the maxAverage whenever we find a higher average.
+
+The time complexity of this algorithm is O(n), where n is the length of the input array nums. We only iterate through the array once.
+
+The space complexity is O(1) because we use a constant amount of extra space regardless of the input size.
+
+Note that the solution assumes the input array nums has at least k elements to form a contiguous subarray of length k.
