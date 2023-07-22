@@ -1,0 +1,86 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Array", "String", "Simulation"]} />
+<Difficulty difficulty={"hard"} />
+## Text Justification
+
+<a
+  href="https://leetcode.com/problems/text-justification/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve this problem, we can use a greedy algorithm to pack words into lines while following the formatting rules. The steps are as follows:
+
+1. Create an empty array to store the lines of text.
+2. Iterate through each word in the input array.
+3. While iterating, keep track of the current line's characters' count.
+4. If adding the next word would exceed the maxWidth, justify the current line and add it to the output array.
+5. If the current line is not the last line, calculate the number of spaces needed between words and distribute them evenly.
+6. If the current line is the last line, left-justify it, and don't add any extra spaces between words.
+7. Continue this process until all words are processed.
+
+Let's implement the solution:
+
+```javascript
+function justifyText(words, maxWidth) {
+  const lines = [];
+  let currentLine = [];
+  let currentLineCharCount = 0;
+
+  function addLine(words, maxWidth, isLastLine = false) {
+    const numWords = words.length;
+    const totalSpaces = maxWidth - currentLineCharCount;
+    const totalGaps = numWords - 1;
+    const spacesPerGap = isLastLine ? 1 : Math.floor(totalSpaces / totalGaps);
+    const extraSpaces = isLastLine ? 0 : totalSpaces % totalGaps;
+
+    let line = "";
+    for (let i = 0; i < numWords; i++) {
+      line += words[i];
+      if (i < numWords - 1) {
+        const spacesToAdd = spacesPerGap + (extraSpaces > 0 ? 1 : 0);
+        line += " ".repeat(spacesToAdd);
+        extraSpaces--;
+      }
+    }
+
+    if (isLastLine) {
+      line += " ".repeat(maxWidth - line.length);
+    }
+
+    lines.push(line);
+  }
+
+  for (let word of words) {
+    if (currentLineCharCount + currentLine.length + word.length <= maxWidth) {
+      currentLine.push(word);
+      currentLineCharCount += word.length;
+    } else {
+      addLine(currentLine, maxWidth);
+      currentLine = [word];
+      currentLineCharCount = word.length;
+    }
+  }
+
+  addLine(currentLine, maxWidth, true);
+
+  return lines;
+}
+
+// Example usage:
+const words = ["This", "is", "an", "example", "of", "justification."];
+const maxWidth = 16;
+const justifiedText = justifyText(words, maxWidth);
+console.log(justifiedText);
+```
+
+Time Complexity:
+The time complexity of this solution is **O(N)**, where `N` is the total number of characters in the input array of words. The algorithm processes each word once and justifies the lines accordingly.
+
+Space Complexity:
+The space complexity is **O(N)** as well. The space required for the output array of justified lines is proportional to the total number of characters in the input array of words.

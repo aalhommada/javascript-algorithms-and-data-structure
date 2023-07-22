@@ -1,0 +1,71 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["String", "Tow Pointers", "String Matching"]} />
+<Difficulty difficulty={"easy"} />
+## Find the Index of the First Occurrence in a String
+
+<a
+  href="https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve the problem of finding the index of the first occurrence of a substring (needle) in a given string (haystack), we can use the sliding window approach. We iterate through the haystack and check if there is a substring in the haystack that matches the needle.
+
+Here's an implementation of the algorithm:
+
+```javascript
+function strStr(haystack, needle) {
+  const h = haystack.length;
+  const n = needle.length;
+
+  // If the needle is an empty string, return 0
+  if (n === 0) {
+    return 0;
+  }
+
+  for (let i = 0; i <= h - n; i++) {
+    let j;
+    // Check if the substring of haystack from i to i + n - 1 matches the needle
+    for (j = 0; j < n; j++) {
+      if (haystack[i + j] !== needle[j]) {
+        break;
+      }
+    }
+
+    // If the loop completed without any break, it means we found the needle
+    if (j === n) {
+      return i;
+    }
+  }
+
+  // Needle not found in haystack
+  return -1;
+}
+```
+
+In this solution, we first handle the edge case where the needle is an empty string. In that case, we immediately return 0 since the empty string is always a substring of any string at index 0.
+
+We then use two pointers, `i` and `j`, to iterate through the haystack and needle, respectively. We start `i` from 0 and iterate up to `h - n` (where `h` is the length of the haystack and `n` is the length of the needle). This is because if the remaining length of the haystack is less than the length of the needle, we won't find a match.
+
+Within the outer loop, we have an inner loop that compares characters of the haystack and needle. We use the variable `j` to index the characters of the needle. If there is a mismatch at any point, we break out of the inner loop and continue checking the next substring.
+
+If the inner loop completes without any breaks, it means we found a substring in the haystack that matches the needle. In that case, we return the index `i`, which represents the starting position of the substring.
+
+If we finish the outer loop without finding a match, we return -1 to indicate that the needle is not part of the haystack.
+
+Here's an example usage of the `strStr` function:
+
+```javascript
+console.log(strStr("hello", "ll")); // Output: 2
+console.log(strStr("aaaaa", "bba")); // Output: -1
+console.log(strStr("mississippi", "issip")); // Output: 4
+```
+
+The time complexity of this algorithm is **O((h-n+1)\*n)**, where `h` is the length of the haystack and `n` is the length of the needle. In the worst case, we might compare all characters of the haystack and needle at each position.
+
+The space complexity is **O(1)** because we use a constant amount of extra space regardless of the input size.

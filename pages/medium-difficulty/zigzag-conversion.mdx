@@ -1,0 +1,65 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["String"]} />
+<Difficulty difficulty={"medium"} />
+## Zigzag Conversion
+
+<a
+  href="https://leetcode.com/problems/zigzag-conversion/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve the problem of converting a string into a zigzag pattern with a given number of rows, we can use an array of strings to represent each row in the pattern. We iterate through the input string character by character, assigning each character to the appropriate row in a zigzag pattern. Finally, we concatenate the rows to form the converted string.
+
+Here's an implementation of the algorithm:
+
+```javascript
+function convert(s, numRows) {
+  if (numRows === 1) {
+    return s; // Edge case where numRows is 1, return the input string as is
+  }
+
+  const rows = new Array(Math.min(s.length, numRows)).fill(""); // Array to store rows
+  let currentRow = 0; // Pointer to the current row
+  let goingDown = false; // Flag to indicate the direction of movement
+
+  for (let i = 0; i < s.length; i++) {
+    rows[currentRow] += s[i]; // Assign the character to the current row
+
+    if (currentRow === 0 || currentRow === numRows - 1) {
+      goingDown = !goingDown; // Change direction at the first and last row
+    }
+
+    currentRow += goingDown ? 1 : -1; // Move to the next row based on the direction
+  }
+
+  return rows.join(""); // Concatenate the rows to form the converted string
+}
+```
+
+In this solution, we handle the edge case where `numRows` is 1. In that case, we return the input string `s` as is since there is no zigzag pattern to form.
+
+We initialize the `rows` array with a length equal to the minimum of `s.length` and `numRows`. Each element in the `rows` array represents a row in the zigzag pattern.
+
+We also initialize `currentRow` to 0, which represents the current row we're assigning characters to, and `goingDown` to false, indicating the initial direction of movement.
+
+We then iterate through the characters of `s` and assign each character to the current row in the zigzag pattern. We update `goingDown` whenever we reach the first or last row to change the direction of movement. We move to the next row by incrementing `currentRow` if `goingDown` is true or decrementing it if `goingDown` is false.
+
+Finally, we join the elements of the `rows` array using an empty string as the separator to form the converted string.
+
+Here's an example usage of the `convert` function:
+
+```javascript
+console.log(convert("PAYPALISHIRING", 3)); // Output: "PAHNAPLSIIGYIR"
+console.log(convert("PAYPALISHIRING", 4)); // Output: "PINALSIGYAHRPI"
+console.log(convert("A", 1)); // Output: "A"
+```
+
+The time complexity of this algorithm is **O(n)**, where n is the length of the input string `s`. We iterate through each character of `s` once.
+
+The space complexity is **O(n)** as well. We create an array of rows with a length proportional to the input string length, and the concatenated converted string will also have the same length.

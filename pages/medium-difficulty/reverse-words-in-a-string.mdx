@@ -1,0 +1,52 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["String", "Tow Pointers"]} />
+<Difficulty difficulty={"medium"} />
+## Reverse Words in a String
+
+<a
+  href="https://leetcode.com/problems/reverse-words-in-a-string/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve the problem of reversing the order of words in a string, we can split the string into an array of words using the space character as a delimiter. We then reverse the array and join the words back together with a single space separator.
+
+Here's an implementation of the algorithm:
+
+```javascript
+function reverseWords(s) {
+  // Remove leading and trailing spaces, and reduce multiple spaces to a single space
+  s = s.trim().replace(/\s+/g, " ");
+
+  // Split the string into an array of words
+  const words = s.split(" ");
+
+  // Reverse the array of words and join them with a single space separator
+  return words.reverse().join(" ");
+}
+```
+
+In this solution, we first remove any leading and trailing spaces from the input string `s` using the `trim` method. We then replace any multiple spaces with a single space using a regular expression.
+
+Next, we split the modified string into an array of words using the `split` method with the space character as the delimiter.
+
+We then reverse the array of words using the `reverse` method and join them back together into a string using the `join` method with a single space as the separator.
+
+Finally, we return the resulting reversed string of words.
+
+Here's an example usage of the `reverseWords` function:
+
+```javascript
+console.log(reverseWords("the sky is blue")); // Output: "blue is sky the"
+console.log(reverseWords("  hello world  ")); // Output: "world hello"
+console.log(reverseWords("a good   example")); // Output: "example good a"
+```
+
+The time complexity of this algorithm is O(n), where n is the length of the input string `s`. The operations of trimming, replacing, splitting, reversing, and joining all take linear time.
+
+The space complexity is O(n) as well. The array of words will have a length proportional to the input string length, and the reversed string will also have the same length.

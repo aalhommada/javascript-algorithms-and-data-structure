@@ -3,13 +3,14 @@
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
+  margin-top: 3px;
 }
 
 .tagItem {
-  background-color: rgb(216, 219, 33);
+  background-color: rgb(134, 136, 48);
   font-size: 12px;
   font-weight: 700;
-  color: black;
+  color: white;
   margin-right: 2px;
   border-radius: 10px;
   padding: 4px 6px;

@@ -1,0 +1,64 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["String", "Trie"]} />
+<Difficulty difficulty={"easy"} />
+## Longest Common Prefix
+
+<a
+  href="https://leetcode.com/problems/longest-common-prefix/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve the problem of finding the longest common prefix among an array of strings, we can compare the characters at each index of the strings and stop as soon as we encounter a mismatch. The common characters up to that point will be the longest common prefix.
+
+Here's an implementation of the algorithm:
+
+```javascript
+function longestCommonPrefix(strs) {
+  if (strs.length === 0) {
+    return "";
+  }
+
+  let prefix = strs[0];
+
+  for (let i = 1; i < strs.length; i++) {
+    while (strs[i].indexOf(prefix) !== 0) {
+      prefix = prefix.slice(0, prefix.length - 1);
+
+      if (prefix === "") {
+        return "";
+      }
+    }
+  }
+
+  return prefix;
+}
+```
+
+In this solution, we first handle the edge case where the input array `strs` is empty. In that case, we immediately return an empty string.
+
+Next, we initialize the `prefix` variable with the first string in the array.
+
+We then iterate through the remaining strings in the array, starting from index 1. For each string, we use the `indexOf` method to check if the `prefix` is a prefix of the current string. If it's not, we remove the last character from the `prefix` and continue checking. We repeat this process until we find a matching prefix or the `prefix` becomes an empty string.
+
+`strs[i].indexOf(prefix) !== 0` is used to check if the current word in the array `strs[i]` starts with the current prefix prefix. The condition `indexOf(prefix) !== 0` checks if the prefix is not found at the beginning of the word, which means the prefix is not a common prefix for the current word.
+
+`strs[i].indexOf(prefix)`: The indexOf() method of a string returns the index of the first occurrence of the specified substring (in this case, prefix) in the string. If the substring is not found, it returns `-1`.
+
+Finally, we return the `prefix`, which represents the longest common prefix among all the strings in the array.
+
+Here's an example usage of the `longestCommonPrefix` function:
+
+```javascript
+console.log(longestCommonPrefix(["flower", "flow", "flight"])); // Output: "fl"
+console.log(longestCommonPrefix(["dog", "racecar", "car"])); // Output: ""
+```
+
+The time complexity of this algorithm is O(m\*n), where m is the length of the longest string in the array and n is the number of strings in the array. In the worst case, we may need to compare all the characters in all the strings.
+
+The space complexity is O(1) because we use a constant amount of extra space regardless of the input size.
