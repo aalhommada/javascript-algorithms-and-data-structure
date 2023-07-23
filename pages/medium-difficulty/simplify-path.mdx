@@ -1,0 +1,56 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["String", "Stack"]} />
+<Difficulty difficulty={"medium"} />
+## Simplity Path
+
+<a
+  href="https://leetcode.com/problems/simplify-path/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To solve the given problem of converting an absolute Unix-style path to its simplified canonical form using JavaScript, we can use a stack to keep track of the directories encountered while processing the path. We will split the input path by slashes ('/') and process each component one by one. Depending on the component, we will take different actions, such as pushing onto the stack, popping from the stack, or ignoring certain components like '.', '..', and empty strings.
+
+Let's implement the solution:
+
+```javascript
+function simplifyPath(path) {
+  const components = path.split("/");
+  const stack = [];
+
+  for (const component of components) {
+    if (component === "" || component === ".") {
+      // Ignore empty components and single periods
+      continue;
+    } else if (component === "..") {
+      // Go up one directory level by popping from the stack
+      stack.pop();
+    } else {
+      // Push the current directory onto the stack
+      stack.push(component);
+    }
+  }
+
+  // Join the simplified components and construct the canonical path
+  return "/" + stack.join("/");
+}
+```
+
+Let's analyze the time and space complexity of the solution:
+
+Time Complexity:
+
+- The `split` method takes linear time **O(n)**, where `n` is the length of the input path.
+- The for-loop iterates through the components, and each operation inside the loop (push, pop, continue, etc.) takes constant time **O(1)**.
+- Overall, the time complexity is **O(n)**, where `n` is the length of the input path.
+
+Space Complexity:
+
+- The `components` array holds all the split components of the path, which takes additional space of **O(n)**.
+- The `stack` can contain at most n/2 elements (in the case of a path like "/a/b/c/d/..."), so the space complexity of the stack is **O(n)**.
+- The overall space complexity is **O(n)**.
