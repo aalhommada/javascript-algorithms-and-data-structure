@@ -1,0 +1,93 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Linked List"]} />
+<Difficulty difficulty={"easy"} />
+**Palidrome Number**
+
+<a
+  href="https://leetcode.com/problems/reverse-linked-list/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+We can solve the palindrome check problem using two pointers. We can use the two-pointer approach to compare digits from the left and right to check if they form a palindrome.
+
+The idea is to extract the digits of the number from left to right and right to left, and then compare them. To extract the digits, we can use the modulo operator (%) to get the rightmost digit, and the integer division (Math.floor) to remove the rightmost digit.
+
+Let's implement the solution using the two-pointer approach in JavaScript:
+
+```javascript
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+var isPalindrome = function (x) {
+  if (x < 0) {
+    return false; // Negative numbers cannot be palindromes
+  }
+
+  let originalX = x;
+  let reversedX = 0;
+
+  while (x > 0) {
+    const digit = x % 10;
+    reversedX = reversedX * 10 + digit;
+    x = Math.floor(x / 10);
+  }
+
+  return originalX === reversedX;
+};
+```
+
+You can use the `isPalindrome` function in the same way as mentioned earlier to check if a given integer `x` is a palindrome. The function returns `true` if the integer is a palindrome; otherwise, it returns `false`.
+
+Let's break down the code inside the `while` loop and understand how it works to reverse the digits of the given integer `x`.
+
+```javascript
+while (x > 0) {
+  const digit = x % 10;
+  reversedX = reversedX * 10 + digit;
+  x = Math.floor(x / 10);
+}
+```
+
+1. `x % 10`: This operation extracts the rightmost digit of the number `x`. In JavaScript, the `%` operator gives the remainder when `x` is divided by 10. For example, `123 % 10` would give `3`.
+
+2. `reversedX * 10 + digit`: Here, `reversedX` is used to build the reversed number. For each iteration of the loop, we multiply `reversedX` by 10 to shift its digits to the left, and then add the extracted digit to the rightmost position. This effectively places each digit extracted in reverse order. For example, if `reversedX` is `0` and `digit` is `3`, after this operation, `reversedX` becomes `3`.
+
+3. `x = Math.floor(x / 10)`: This operation removes the rightmost digit from `x` by performing an integer division by 10. Integer division discards any decimal part, effectively removing the rightmost digit. For example, if `x` is `123`, after this operation, `x` becomes `12`.
+
+The loop continues to run until `x` becomes 0. During each iteration, it extracts the rightmost digit from `x`, places it in the reversed position in `reversedX`, and then removes the rightmost digit from `x`. After the loop, `reversedX` will contain the reversed digits of the original `x`.
+
+For example, let's say `x` is `123`:
+
+1st iteration:
+
+- `x`: 123
+- `digit`: 3
+- `reversedX`: 3 (since `reversedX` starts as 0, it becomes 0 \* 10 + 3 = 3)
+- `x`: 12 (after performing Math.floor(123 / 10))
+
+2nd iteration:
+
+- `x`: 12
+- `digit`: 2
+- `reversedX`: 32 (since `reversedX` was 3, it becomes 3 \* 10 + 2 = 32)
+- `x`: 1 (after performing Math.floor(12 / 10))
+
+3rd iteration:
+
+- `x`: 1
+- `digit`: 1
+- `reversedX`: 321 (since `reversedX` was 32, it becomes 32 \* 10 + 1 = 321)
+- `x`: 0 (after performing Math.floor(1 / 10))
+
+The loop ends since `x` is now 0. The final value of `reversedX` becomes `321`, which is the reversed digits of the original `x` (123).
+
+After the loop, we compare `reversedX` with the original value of `x`. If they are the same, it means `x` is a palindrome. Otherwise, it's not.
+
+This implementation has a time complexity of **O(log10(x))**, where x is the given integer, as we are extracting digits from the number. The space complexity is **O(1)**, as we are not using any additional data structures that grow with the input size.

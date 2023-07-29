@@ -1,0 +1,68 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Stack", "Design"]} />
+<Difficulty difficulty={"medium"} />
+## Min Stack
+
+<a
+  href="https://leetcode.com/problems/min-stack/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To design a stack that supports push, pop, top, and retrieving the minimum element in constant time, we can use an additional stack to keep track of the minimum elements at each step. This approach ensures that the minimum element is always available in constant time. Let's implement the MinStack class with O(1) time complexity for each function:
+
+```javascript
+var MinStack = function () {
+  this.stack = [];
+  this.minStack = []; // To keep track of the minimum elements
+};
+
+/**
+ * @param {number} val
+ * @return {void}
+ */
+MinStack.prototype.push = function (val) {
+  this.stack.push(val);
+  if (
+    this.minStack.length === 0 ||
+    val <= this.minStack[this.minStack.length - 1]
+  ) {
+    // If the value is less than or equal to the current minimum, push it to the minStack
+    this.minStack.push(val);
+  }
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function () {
+  const poppedElement = this.stack.pop();
+  if (poppedElement === this.minStack[this.minStack.length - 1]) {
+    // If the popped element is the current minimum, remove it from the minStack as well
+    this.minStack.pop();
+  }
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function () {
+  return this.stack[this.stack.length - 1];
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function () {
+  return this.minStack[this.minStack.length - 1];
+};
+```
+
+In this implementation, we maintain two stacks: `stack` for regular operations and `minStack` to keep track of the minimum elements. When pushing a new element, we check if it's the new minimum and, if so, push it to `minStack`. When popping an element, we also check if the popped element is the current minimum and, if so, remove it from `minStack`.
+
+The time complexity of each function in this implementation is **O(1)** since all the operations involve constant-time operations like push, pop, and accessing elements from the top of the stack. The space complexity is also **O(n)**, where `n` is the number of elements in the stack, as we use an additional stack (`minStack`) to keep track of the minimum elements.

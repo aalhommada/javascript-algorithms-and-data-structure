@@ -1,0 +1,77 @@
+import styles from "../../components/contact.module.css";
+import { Tags } from "../../components/tags";
+import { Difficulty } from "../../components/difficulty";
+
+<Tags tagItems={["Stack", "Array", "Math"]} />
+<Difficulty difficulty={"medium"} />
+## Evaluate Reverse Polish Notation
+
+<a
+  href="https://leetcode.com/problems/evaluate-reverse-polish-notation/"
+  target="_blank"
+  className={styles.links}
+>
+  Link to algo
+</a>
+
+To evaluate an arithmetic expression in Reverse Polish Notation (RPN), we can use a stack to keep track of the operands and perform operations based on the operators encountered in the array. We'll process the tokens from left to right and handle each token accordingly.
+
+**Reverse Polish Notation (RPN)**, also known as postfix notation, is a mathematical expression format that simplifies the way we write and evaluate mathematical operations. In simple words, RPN places operators (such as +, -, \*, /) after their operands (numbers), instead of between them as we usually do in standard notation.
+
+For example, in standard notation, we write: 3 + 5, where the operator (+) is placed between the operands (3 and 5). In Reverse Polish Notation, the same expression would be written as: 3 5 +, where the operator (+) comes after the operands (3 and 5).
+
+To evaluate expressions in RPN, you read the expression from left to right and perform the operations on the operands as soon as you encounter an operator. When you encounter an operator, you take the last two numbers (operands) before that operator, perform the operation, and replace them with the result. You continue this process until the whole expression is evaluated, and the final result is the answer to the expression.
+
+RPN is often used in computer programs and calculators because it eliminates the need for parentheses and ensures a clear and unambiguous way to perform calculations.
+
+Here's an implementation to solve the problem:
+
+```javascript
+/**
+ * @param {string[]} tokens
+ * @return {number}
+ */
+var evalRPN = function (tokens) {
+  const stack = [];
+
+  for (const token of tokens) {
+    if (!isNaN(token)) {
+      // If the token is a number, push it onto the stack
+      stack.push(parseInt(token, 10));
+    } else {
+      // If the token is an operator, pop the last two operands from the stack and perform the operation
+      const operand2 = stack.pop();
+      const operand1 = stack.pop();
+      switch (token) {
+        case "+":
+          stack.push(operand1 + operand2);
+          break;
+        case "-":
+          stack.push(operand1 - operand2);
+          break;
+        case "*":
+          stack.push(operand1 * operand2);
+          break;
+        case "/":
+          stack.push(
+            // If the result of the regular division is negative, we use Math.ceil() to round it up to the nearest integer
+            // (towards positive infinity) to get the "round towards zero" behavior.
+            // If the result of the regular division is positive, we use Math.floor() to round it down to the nearest integer
+            // (towards negative infinity) to get the "round towards zero" behavior.
+            operand1 / operand2 < 0
+              ? Math.ceil(operand1 / operand2)
+              : Math.floor(operand1 / operand2)
+          );
+          break;
+      }
+    }
+  }
+
+  // The final result will be at the top of the stack
+  return stack.pop();
+};
+```
+
+In this implementation, we iterate through each token in the `tokens` array. If the token is a number, we push it onto the stack. If the token is an operator, we pop the last two operands from the stack, perform the corresponding operation, and push the result back onto the stack.
+
+The `evalRPN` function has a time complexity of **O(n)**, where n is the number of tokens in the input array, as we process each token once. The space complexity is also **O(n)** as we use a stack to store the operands during the evaluation.

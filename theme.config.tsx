@@ -67,7 +67,7 @@ const config: DocsThemeConfig = {
     text: null,
   },
 
-  search: { component: null },
+  search: { placeholder: "Search Algorithms .." },
 
   gitTimestamp: null,
   sidebar: {
